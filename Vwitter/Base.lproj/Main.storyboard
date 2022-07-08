@@ -16,34 +16,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hXb-Wx-vOI">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hXb-Wx-vOI">
                                 <rect key="frame" x="61" y="130" width="292" height="288"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="292" id="HKy-M5-kn0"/>
+                                    <constraint firstAttribute="height" constant="288" id="I5h-Z9-aD5"/>
+                                </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X6w-XU-GgN">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X6w-XU-GgN">
                                 <rect key="frame" x="42" y="446" width="331" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="331" id="Okg-SP-BkT"/>
+                                    <constraint firstAttribute="height" constant="34" id="hRS-7Y-1IH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vP6-dr-NV4">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vP6-dr-NV4">
                                 <rect key="frame" x="42" y="509" width="331" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="331" id="aVe-oC-EOg"/>
+                                    <constraint firstAttribute="height" constant="34" id="gWP-mF-FEi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C30-hw-R12">
-                                <rect key="frame" x="38" y="551" width="75" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C30-hw-R12">
+                                <rect key="frame" x="42" y="551" width="75" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                 <connections>
                                     <action selector="didTapSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Etf-Fn-YC8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDD-FE-2cR">
-                                <rect key="frame" x="310" y="551" width="60" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDD-FE-2cR">
+                                <rect key="frame" x="313" y="551" width="60" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login"/>
                                 <connections>
@@ -53,6 +60,18 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hXb-Wx-vOI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="86" id="9Dz-0u-rgf"/>
+                            <constraint firstItem="JDD-FE-2cR" firstAttribute="trailing" secondItem="vP6-dr-NV4" secondAttribute="trailing" id="Ept-NU-Omh"/>
+                            <constraint firstItem="X6w-XU-GgN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="IyH-2N-ES0"/>
+                            <constraint firstItem="hXb-Wx-vOI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TU3-Qs-uNm"/>
+                            <constraint firstItem="vP6-dr-NV4" firstAttribute="top" secondItem="X6w-XU-GgN" secondAttribute="bottom" constant="29" id="UbY-Nb-Jsy"/>
+                            <constraint firstItem="X6w-XU-GgN" firstAttribute="top" secondItem="hXb-Wx-vOI" secondAttribute="bottom" constant="28" id="ap4-MI-Stq"/>
+                            <constraint firstItem="JDD-FE-2cR" firstAttribute="top" secondItem="vP6-dr-NV4" secondAttribute="bottom" constant="8" symbolic="YES" id="dWz-Lt-hBg"/>
+                            <constraint firstItem="C30-hw-R12" firstAttribute="leading" secondItem="vP6-dr-NV4" secondAttribute="leading" id="rNb-pZ-aq1"/>
+                            <constraint firstItem="C30-hw-R12" firstAttribute="top" secondItem="vP6-dr-NV4" secondAttribute="bottom" constant="8" symbolic="YES" id="syj-db-ogO"/>
+                            <constraint firstItem="vP6-dr-NV4" firstAttribute="leading" secondItem="X6w-XU-GgN" secondAttribute="leading" id="tYl-9e-mgM"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="passwordField" destination="vP6-dr-NV4" id="gOq-VV-S9B"/>
@@ -76,8 +95,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="2Lc-dl-x11">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="5Xb-F6-EEh">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Kfg-im-Ol6">
-                                <rect key="frame" x="20" y="12.5" width="92" height="31"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Kfg-im-Ol6">
+                                <rect key="frame" x="20" y="11" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
