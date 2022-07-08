@@ -64,10 +64,15 @@
                             <constraint firstItem="hXb-Wx-vOI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="86" id="9Dz-0u-rgf"/>
                             <constraint firstItem="JDD-FE-2cR" firstAttribute="trailing" secondItem="vP6-dr-NV4" secondAttribute="trailing" id="Ept-NU-Omh"/>
                             <constraint firstItem="X6w-XU-GgN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="IyH-2N-ES0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hXb-Wx-vOI" secondAttribute="trailing" constant="61" id="RJm-1R-cJN"/>
                             <constraint firstItem="hXb-Wx-vOI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TU3-Qs-uNm"/>
                             <constraint firstItem="vP6-dr-NV4" firstAttribute="top" secondItem="X6w-XU-GgN" secondAttribute="bottom" constant="29" id="UbY-Nb-Jsy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X6w-XU-GgN" secondAttribute="trailing" constant="41" id="WFg-b7-gwc"/>
                             <constraint firstItem="X6w-XU-GgN" firstAttribute="top" secondItem="hXb-Wx-vOI" secondAttribute="bottom" constant="28" id="ap4-MI-Stq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="C30-hw-R12" secondAttribute="bottom" constant="280" id="cZ6-Gi-MaO"/>
                             <constraint firstItem="JDD-FE-2cR" firstAttribute="top" secondItem="vP6-dr-NV4" secondAttribute="bottom" constant="8" symbolic="YES" id="dWz-Lt-hBg"/>
+                            <constraint firstItem="vP6-dr-NV4" firstAttribute="trailing" secondItem="X6w-XU-GgN" secondAttribute="trailing" id="fqP-W2-gmg"/>
+                            <constraint firstItem="hXb-Wx-vOI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="61" id="kfC-T6-BA6"/>
                             <constraint firstItem="C30-hw-R12" firstAttribute="leading" secondItem="vP6-dr-NV4" secondAttribute="leading" id="rNb-pZ-aq1"/>
                             <constraint firstItem="C30-hw-R12" firstAttribute="top" secondItem="vP6-dr-NV4" secondAttribute="bottom" constant="8" symbolic="YES" id="syj-db-ogO"/>
                             <constraint firstItem="vP6-dr-NV4" firstAttribute="leading" secondItem="X6w-XU-GgN" secondAttribute="leading" id="tYl-9e-mgM"/>
