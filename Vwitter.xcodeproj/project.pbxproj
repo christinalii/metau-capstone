@@ -20,6 +20,8 @@
 		298B82EC2878A15D00EE54B8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B82EB2878A15D00EE54B8 /* LoginViewController.m */; };
 		298B82EF2878AF3000EE54B8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B82EE2878AF3000EE54B8 /* HomeViewController.m */; };
 		298B82F22878C95E00EE54B8 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B82F12878C95E00EE54B8 /* ComposeViewController.m */; };
+		298B82F52878D5EA00EE54B8 /* SelectAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B82F42878D5EA00EE54B8 /* SelectAudienceViewController.m */; };
+		298B82F92878DF0900EE54B8 /* VWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B82F82878DF0900EE54B8 /* VWUser.m */; };
 		BDA7F819A0286F3B39A008CB /* Pods_VwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */; };
 		DA1CE8C75883D35ED75901CF /* Pods_Vwitter_VwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,10 @@
 		298B82EE2878AF3000EE54B8 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		298B82F02878C95E00EE54B8 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		298B82F12878C95E00EE54B8 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		298B82F32878D5EA00EE54B8 /* SelectAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAudienceViewController.h; sourceTree = "<group>"; };
+		298B82F42878D5EA00EE54B8 /* SelectAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAudienceViewController.m; sourceTree = "<group>"; };
+		298B82F72878DF0900EE54B8 /* VWUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VWUser.h; sourceTree = "<group>"; };
+		298B82F82878DF0900EE54B8 /* VWUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VWUser.m; sourceTree = "<group>"; };
 		331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vwitter_VwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A5D72133CCDA51BC7A511AE /* Pods-Vwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vwitter.debug.xcconfig"; path = "Target Support Files/Pods-Vwitter/Pods-Vwitter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +133,7 @@
 		298B82B328763A2100EE54B8 /* Vwitter */ = {
 			isa = PBXGroup;
 			children = (
+				298B82F62878DEEC00EE54B8 /* Models */,
 				298B82E92878A14E00EE54B8 /* View Controllers */,
 				298B82B428763A2100EE54B8 /* AppDelegate.h */,
 				298B82B528763A2100EE54B8 /* AppDelegate.m */,
@@ -167,8 +174,19 @@
 				298B82EE2878AF3000EE54B8 /* HomeViewController.m */,
 				298B82F02878C95E00EE54B8 /* ComposeViewController.h */,
 				298B82F12878C95E00EE54B8 /* ComposeViewController.m */,
+				298B82F32878D5EA00EE54B8 /* SelectAudienceViewController.h */,
+				298B82F42878D5EA00EE54B8 /* SelectAudienceViewController.m */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		298B82F62878DEEC00EE54B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				298B82F72878DF0900EE54B8 /* VWUser.h */,
+				298B82F82878DF0900EE54B8 /* VWUser.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		7E6EAC97CF69670635C4FEC0 /* Pods */ = {
@@ -437,7 +455,9 @@
 				298B82C728763A2300EE54B8 /* main.m in Sources */,
 				298B82F22878C95E00EE54B8 /* ComposeViewController.m in Sources */,
 				298B82EF2878AF3000EE54B8 /* HomeViewController.m in Sources */,
+				298B82F52878D5EA00EE54B8 /* SelectAudienceViewController.m in Sources */,
 				298B82B928763A2100EE54B8 /* SceneDelegate.m in Sources */,
+				298B82F92878DF0900EE54B8 /* VWUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
