@@ -8,7 +8,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) NSString *defaultPlaceholder;
@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.usernameField.delegate = self;
+    self.passwordField.delegate = self;
 }
 
 - (void)registerUser {
@@ -65,6 +67,11 @@
 
 - (IBAction)didTapLogin:(id)sender {
     [self loginUser];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*

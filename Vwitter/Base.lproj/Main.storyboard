@@ -17,32 +17,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hXb-Wx-vOI">
-                                <rect key="frame" x="61" y="130" width="292" height="288"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="292" id="HKy-M5-kn0"/>
-                                    <constraint firstAttribute="height" constant="288" id="I5h-Z9-aD5"/>
-                                </constraints>
+                                <rect key="frame" x="61" y="130" width="292" height="60"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X6w-XU-GgN">
-                                <rect key="frame" x="42" y="446" width="331" height="34"/>
+                                <rect key="frame" x="42" y="218" width="331" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="331" id="Okg-SP-BkT"/>
                                     <constraint firstAttribute="height" constant="34" id="hRS-7Y-1IH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vP6-dr-NV4">
-                                <rect key="frame" x="42" y="509" width="331" height="34"/>
+                                <rect key="frame" x="42" y="281" width="331" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="331" id="aVe-oC-EOg"/>
                                     <constraint firstAttribute="height" constant="34" id="gWP-mF-FEi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C30-hw-R12">
-                                <rect key="frame" x="42" y="551" width="75" height="31"/>
+                                <rect key="frame" x="42" y="323" width="75" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                 <connections>
@@ -50,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDD-FE-2cR">
-                                <rect key="frame" x="313" y="551" width="60" height="31"/>
+                                <rect key="frame" x="313" y="323" width="60" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login"/>
                                 <connections>
@@ -69,7 +65,7 @@
                             <constraint firstItem="vP6-dr-NV4" firstAttribute="top" secondItem="X6w-XU-GgN" secondAttribute="bottom" constant="29" id="UbY-Nb-Jsy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X6w-XU-GgN" secondAttribute="trailing" constant="41" id="WFg-b7-gwc"/>
                             <constraint firstItem="X6w-XU-GgN" firstAttribute="top" secondItem="hXb-Wx-vOI" secondAttribute="bottom" constant="28" id="ap4-MI-Stq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="C30-hw-R12" secondAttribute="bottom" constant="280" id="cZ6-Gi-MaO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C30-hw-R12" secondAttribute="bottom" constant="280" id="cZ6-Gi-MaO"/>
                             <constraint firstItem="JDD-FE-2cR" firstAttribute="top" secondItem="vP6-dr-NV4" secondAttribute="bottom" constant="8" symbolic="YES" id="dWz-Lt-hBg"/>
                             <constraint firstItem="vP6-dr-NV4" firstAttribute="trailing" secondItem="X6w-XU-GgN" secondAttribute="trailing" id="fqP-W2-gmg"/>
                             <constraint firstItem="hXb-Wx-vOI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="61" id="kfC-T6-BA6"/>
@@ -110,11 +106,76 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="jbz-yU-HG8">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="HhM-Uo-gtb">
+                                <rect key="frame" x="302" y="6" width="92" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="air-pngrepo-com"/>
+                                <connections>
+                                    <segue destination="gJj-rM-bfE" kind="show" id="azf-nN-yFW"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqk-1k-doI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1979.7101449275365" y="137.94642857142856"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="IaF-wO-3Jt">
+            <objects>
+                <viewController id="D7s-lF-xTd" customClass="ComposeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hsg-vS-3Ne">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DM7-4V-YAZ">
+                                <rect key="frame" x="20" y="82" width="374" height="655"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekF-sl-A46">
+                                <rect key="frame" x="318" y="777" width="85" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Vent To..."/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7Gd-3w-8oI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DM7-4V-YAZ" firstAttribute="top" secondItem="7Gd-3w-8oI" secondAttribute="top" constant="26" id="IL9-gG-gSQ"/>
+                            <constraint firstItem="7Gd-3w-8oI" firstAttribute="trailing" secondItem="DM7-4V-YAZ" secondAttribute="trailing" constant="20" id="LE1-yn-pSi"/>
+                            <constraint firstItem="7Gd-3w-8oI" firstAttribute="bottom" secondItem="ekF-sl-A46" secondAttribute="bottom" constant="34" id="YYL-Yg-3cH"/>
+                            <constraint firstItem="7Gd-3w-8oI" firstAttribute="trailing" secondItem="ekF-sl-A46" secondAttribute="trailing" constant="11" id="fXg-MB-qyo"/>
+                            <constraint firstItem="ekF-sl-A46" firstAttribute="top" secondItem="DM7-4V-YAZ" secondAttribute="bottom" constant="40" id="oZr-tP-bZo"/>
+                            <constraint firstItem="DM7-4V-YAZ" firstAttribute="leading" secondItem="7Gd-3w-8oI" secondAttribute="leading" constant="20" id="uJp-xF-H54"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ag8-k9-gqV">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="MtC-Ia-7KZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="9tM-TV-zVK">
+                                <rect key="frame" x="20" y="9" width="92" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="close-icon"/>
+                                <connections>
+                                    <action selector="didTapClose:" destination="D7s-lF-xTd" eventType="touchUpInside" id="VZ7-YF-Vyn"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ventContent" destination="DM7-4V-YAZ" id="Qxv-ip-FTc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="buJ-Dd-gUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3615.9420289855075" y="155.35714285714286"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mh6-CM-zGq">
@@ -135,9 +196,33 @@
             </objects>
             <point key="canvasLocation" x="1069.5652173913045" y="137.94642857142856"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3E2-VV-wRj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gJj-rM-bfE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="p8d-65-P44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ePQ-Fi-xqC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="D7s-lF-xTd" kind="relationship" relationship="rootViewController" id="OzG-nj-G7Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RBH-MW-OQO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2705.7971014492755" y="155.35714285714286"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="air-pngrepo-com" width="60" height="60"/>
+        <image name="close-icon" width="26" height="24"/>
         <image name="logo" width="60" height="60"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
