@@ -7,12 +7,10 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
-#import "VWUser.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) NSString *defaultPlaceholder;
 
 @end
 
@@ -23,26 +21,6 @@
     // Do any additional setup after loading the view.
     self.usernameField.delegate = self;
     self.passwordField.delegate = self;
-}
-
-- (void)registerUser {
-    // initialize a user object
-    VWUser *newUser = [VWUser user];
-    
-    // set user properties
-    newUser.username = self.usernameField.text;
-    newUser.password = self.passwordField.text;
-    newUser.screenName = @"yeeteth";
-
-    // call sign up function on the object
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"User registered successfully");
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-        }
-    }];
 }
 
 - (void)loginUser {
@@ -57,10 +35,6 @@
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
-}
-
-- (IBAction)didTapSignup:(id)sender {
-    [self registerUser];
 }
 
 - (IBAction)didTapLogin:(id)sender {
