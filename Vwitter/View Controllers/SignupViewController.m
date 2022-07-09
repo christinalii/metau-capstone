@@ -23,15 +23,13 @@
 }
 
 - (void)registerUser {
-    // initialize a user object
+
     VWUser *newUser = [VWUser user];
-    
-    // set user properties
+
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
     newUser.screenName = self.screennameField.text;
 
-    // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);

@@ -23,6 +23,7 @@
     self.ventContent.text = self.placeholderText;
     self.ventContent.textColor = [UIColor lightGrayColor];
 }
+
 - (IBAction)didTapClose:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
@@ -31,7 +32,7 @@
 {
     if ([textView.text isEqualToString:self.placeholderText]) {
          textView.text = @"";
-         textView.textColor = [UIColor blackColor]; //optional
+         textView.textColor = [UIColor blackColor];
     }
     [textView becomeFirstResponder];
 }

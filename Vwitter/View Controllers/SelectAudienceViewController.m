@@ -20,6 +20,7 @@
     self.postVentButton.layer.cornerRadius = 20;
     
 }
+
 - (IBAction)didTapVent:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }

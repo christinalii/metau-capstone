@@ -18,8 +18,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
 
-        configuration.applicationId = @"kniju7zULq2flcCwJ7PEG3U8bgQlxqFMBn2NEKPH";
-        configuration.clientKey = @"eNwf1DpXZv3vEisobEV1yVb4NyR0jSvFkpLnJ34v";
+        NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+
+        configuration.applicationId = [dict objectForKey: @"applicationId"];
+        configuration.clientKey = [dict objectForKey: @"clientKey"];
         configuration.server = @"https://parseapi.back4app.com";
     }];
 
