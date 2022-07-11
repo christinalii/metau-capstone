@@ -221,7 +221,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DM7-4V-YAZ">
                                 <rect key="frame" x="20" y="114" width="374" height="594"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -348,6 +347,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="dR1-fD-8i7"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IXO-f9-afa">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -396,6 +396,7 @@
         <!--Search-->
         <scene sceneID="9MV-zR-0ey">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OkD-KG-fa2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vCi-Rc-xO0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="3Px-KT-rRc"/>
                     <toolbarItems/>
@@ -408,7 +409,6 @@
                         <segue destination="uky-dR-R6Y" kind="relationship" relationship="rootViewController" id="VUd-Cm-t7n"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OkD-KG-fa2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="418.84057971014494" y="900.66964285714278"/>
         </scene>

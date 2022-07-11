@@ -7,6 +7,7 @@
 
 #import "SignupViewController.h"
 #import "VWUser.h"
+#import "UIViewController+ErrorAlertPresenter.h"
 
 @interface SignupViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -33,6 +34,8 @@
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
+            [self presentErrorMessageWithTitle:@"Error" message:error.localizedDescription];
+            
         } else {
             NSLog(@"User registered successfully");
             [self performSegueWithIdentifier:@"signupSegue" sender:nil];

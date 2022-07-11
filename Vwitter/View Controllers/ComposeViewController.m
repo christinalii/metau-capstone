@@ -7,6 +7,8 @@
 
 #import "ComposeViewController.h"
 
+@import UITextView_Placeholder;
+
 @interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *ventContent;
 @property (weak, nonatomic) NSString *placeholderText;
@@ -19,31 +21,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.ventContent.delegate = self;
+
     self.placeholderText = @"Let it out!";
-    self.ventContent.text = self.placeholderText;
-    self.ventContent.textColor = [UIColor lightGrayColor];
+    
+    self.ventContent.placeholder = self.placeholderText;
+    self.ventContent.placeholderColor = [UIColor lightGrayColor];
+
 }
 
 - (IBAction)didTapClose:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:self.placeholderText]) {
-         textView.text = @"";
-         textView.textColor = [UIColor blackColor];
-    }
-    [textView becomeFirstResponder];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:@""]) {
-        textView.text = self.placeholderText;
-        textView.textColor = [UIColor lightGrayColor];
-    }
-    [textView resignFirstResponder];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
