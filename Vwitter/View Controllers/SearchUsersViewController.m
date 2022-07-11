@@ -6,8 +6,13 @@
 //
 
 #import "SearchUsersViewController.h"
+#import "UserCell.h"
+#import <Parse/Parse.h>
 
-@interface SearchUsersViewController ()
+@interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *arrayOfUsers;
 
 @end
 
@@ -16,6 +21,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self loadData];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+}
+
+- (void)loadData {
+    PFQuery *userQuery = [PFUser query];
+//    [postQuery orderByDescending:@"createdAt"];
+//    [postQuery includeKey:@"author"];
+    userQuery.limit = 20;
+    
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable users, NSError * _Nullable error) {
+        if (users) {
+            NSLog(@"😎😎😎 Successfully loaded search users timeline");
+            // do something with the data fetched
+            self.arrayOfUsers = users.mutableCopy;
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
+            
+        }
+        else {
+            // handle error
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.arrayOfUsers.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
+
+    cell.user = self.arrayOfUsers[indexPath.row];
+
+    return cell;
 }
 
 /*
