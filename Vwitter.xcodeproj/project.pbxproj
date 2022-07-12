@@ -30,6 +30,10 @@
 		298B830A287CD3E000EE54B8 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B8309287CD3E000EE54B8 /* UserCell.m */; };
 		298B830D287CD99E00EE54B8 /* Follow.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B830C287CD99E00EE54B8 /* Follow.m */; };
 		298B8310287DFF5500EE54B8 /* AudienceMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B830F287DFF5500EE54B8 /* AudienceMemberCell.m */; };
+		298B831F287E1BFA00EE54B8 /* Vent.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B831E287E1BFA00EE54B8 /* Vent.m */; };
+		298B8322287E1C6000EE54B8 /* VentAudience.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B8321287E1C6000EE54B8 /* VentAudience.m */; };
+		298B8325287E1CDC00EE54B8 /* GroupDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B8324287E1CDC00EE54B8 /* GroupDetails.m */; };
+		298B8328287E1D8700EE54B8 /* GroupMembership.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B8327287E1D8700EE54B8 /* GroupMembership.m */; };
 		BDA7F819A0286F3B39A008CB /* Pods_VwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */; };
 		DA1CE8C75883D35ED75901CF /* Pods_Vwitter_VwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +97,14 @@
 		298B830C287CD99E00EE54B8 /* Follow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Follow.m; sourceTree = "<group>"; };
 		298B830E287DFF5500EE54B8 /* AudienceMemberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudienceMemberCell.h; sourceTree = "<group>"; };
 		298B830F287DFF5500EE54B8 /* AudienceMemberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudienceMemberCell.m; sourceTree = "<group>"; };
+		298B831D287E1BFA00EE54B8 /* Vent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vent.h; sourceTree = "<group>"; };
+		298B831E287E1BFA00EE54B8 /* Vent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Vent.m; sourceTree = "<group>"; };
+		298B8320287E1C6000EE54B8 /* VentAudience.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VentAudience.h; sourceTree = "<group>"; };
+		298B8321287E1C6000EE54B8 /* VentAudience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VentAudience.m; sourceTree = "<group>"; };
+		298B8323287E1CDC00EE54B8 /* GroupDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupDetails.h; sourceTree = "<group>"; };
+		298B8324287E1CDC00EE54B8 /* GroupDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupDetails.m; sourceTree = "<group>"; };
+		298B8326287E1D8700EE54B8 /* GroupMembership.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupMembership.h; sourceTree = "<group>"; };
+		298B8327287E1D8700EE54B8 /* GroupMembership.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupMembership.m; sourceTree = "<group>"; };
 		331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vwitter_VwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A5D72133CCDA51BC7A511AE /* Pods-Vwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vwitter.debug.xcconfig"; path = "Target Support Files/Pods-Vwitter/Pods-Vwitter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +235,14 @@
 				298B82F82878DF0900EE54B8 /* VWUser.m */,
 				298B830B287CD99E00EE54B8 /* Follow.h */,
 				298B830C287CD99E00EE54B8 /* Follow.m */,
+				298B831D287E1BFA00EE54B8 /* Vent.h */,
+				298B831E287E1BFA00EE54B8 /* Vent.m */,
+				298B8320287E1C6000EE54B8 /* VentAudience.h */,
+				298B8321287E1C6000EE54B8 /* VentAudience.m */,
+				298B8323287E1CDC00EE54B8 /* GroupDetails.h */,
+				298B8324287E1CDC00EE54B8 /* GroupDetails.m */,
+				298B8326287E1D8700EE54B8 /* GroupMembership.h */,
+				298B8327287E1D8700EE54B8 /* GroupMembership.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -497,12 +517,16 @@
 				298B83022878EAFA00EE54B8 /* SignupViewController.m in Sources */,
 				298B82FF2878E3F100EE54B8 /* ProfileViewController.m in Sources */,
 				298B8310287DFF5500EE54B8 /* AudienceMemberCell.m in Sources */,
+				298B8325287E1CDC00EE54B8 /* GroupDetails.m in Sources */,
 				298B82EF2878AF3000EE54B8 /* HomeViewController.m in Sources */,
 				298B82F52878D5EA00EE54B8 /* SelectAudienceViewController.m in Sources */,
 				298B82B928763A2100EE54B8 /* SceneDelegate.m in Sources */,
+				298B8328287E1D8700EE54B8 /* GroupMembership.m in Sources */,
 				298B830D287CD99E00EE54B8 /* Follow.m in Sources */,
 				298B82F92878DF0900EE54B8 /* VWUser.m in Sources */,
 				298B82FC2878E30F00EE54B8 /* SearchUsersViewController.m in Sources */,
+				298B831F287E1BFA00EE54B8 /* Vent.m in Sources */,
+				298B8322287E1C6000EE54B8 /* VentAudience.m in Sources */,
 				298B830A287CD3E000EE54B8 /* UserCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

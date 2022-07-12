@@ -433,11 +433,10 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="1iI-Tt-WCb" secondAttribute="trailing" constant="332" id="6Jh-L8-Asl"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="1iI-Tt-WCb" secondAttribute="bottom" constant="37" id="7lH-V5-hvi"/>
+                                                <constraint firstItem="1iI-Tt-WCb" firstAttribute="leading" secondItem="AOU-Oh-CxB" secondAttribute="leadingMargin" id="L6a-Gt-nvJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZE1-b9-6uX" secondAttribute="trailing" constant="40" id="Qpb-pm-WD8"/>
                                                 <constraint firstItem="ZE1-b9-6uX" firstAttribute="centerY" secondItem="1iI-Tt-WCb" secondAttribute="centerY" id="YlT-aP-tEH"/>
-                                                <constraint firstItem="1iI-Tt-WCb" firstAttribute="leading" secondItem="AOU-Oh-CxB" secondAttribute="leadingMargin" id="c5t-nB-8g7"/>
                                                 <constraint firstItem="1iI-Tt-WCb" firstAttribute="top" secondItem="AOU-Oh-CxB" secondAttribute="topMargin" constant="36" id="gez-yj-2t6"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -475,11 +474,26 @@
                     <view key="view" contentMode="scaleToFill" id="kLf-pZ-AzO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roF-jn-2Uw">
+                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="77J-Ja-xf7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="roF-jn-2Uw" firstAttribute="centerX" secondItem="kLf-pZ-AzO" secondAttribute="centerX" id="IeK-1X-iUh"/>
+                            <constraint firstItem="roF-jn-2Uw" firstAttribute="centerY" secondItem="kLf-pZ-AzO" secondAttribute="centerY" id="tU5-eD-DP0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="7KV-6F-xfh"/>
                     <navigationItem key="navigationItem" id="srL-Jo-aff"/>
+                    <connections>
+                        <outlet property="username" destination="roF-jn-2Uw" id="K8B-eg-mdG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ND0-lC-3Uz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

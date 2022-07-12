@@ -6,8 +6,10 @@
 //
 
 #import "ProfileViewController.h"
+#import <Parse/Parse.h>
 
 @interface ProfileViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *username;
 
 @end
 
@@ -16,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.username.text = [PFUser currentUser].username;
 }
 
 /*

@@ -11,7 +11,7 @@
 
 @interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *ventContent;
-@property (weak, nonatomic) NSString *placeholderText;
+@property (strong, nonatomic) NSString *placeholderText;
 
 @end
 

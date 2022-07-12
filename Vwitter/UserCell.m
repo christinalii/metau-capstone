@@ -61,7 +61,7 @@
                                 block:^(id exists, NSError *error) {
       if (!error) {
           NSLog (@"%d", ((NSNumber *)exists).boolValue);
-          if (exists == YES) {
+          if (((NSNumber *)exists).boolValue) {
               [self.followStatusButton setTitle:@"Following" forState:UIControlStateNormal];
           }
           else {
