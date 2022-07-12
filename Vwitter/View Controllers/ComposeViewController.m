@@ -6,6 +6,8 @@
 //
 
 #import "ComposeViewController.h"
+#import "Vent.h"
+#import "SelectAudienceViewController.h"
 
 @import UITextView_Placeholder;
 
@@ -43,14 +45,21 @@
     return YES;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"selectAudienceSegue"]) {
+        
+        SelectAudienceViewController *selectAudienceVC = [segue destinationViewController];
+        selectAudienceVC.ventContent = self.ventContent.text;
+        
+    }
 }
-*/
+
 
 @end

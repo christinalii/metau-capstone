@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Vent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SelectAudienceViewController : UIViewController
+
+@property (strong, nonatomic) NSString *ventContent;
 
 @end
 

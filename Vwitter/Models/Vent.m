@@ -16,4 +16,13 @@
     return @"Vent";
 }
 
++ (void)postVent:( NSString * _Nonnull)ventContent withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    Vent *newVent = [Vent new];
+    newVent.author = [PFUser currentUser];
+    newVent.ventContent = ventContent;
+    
+    [newVent saveInBackgroundWithBlock: completion];
+    
+}
+
 @end

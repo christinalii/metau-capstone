@@ -11,6 +11,7 @@
 
 @dynamic ventId;
 @dynamic userId;
+@dynamic groupId;
 
 + (nonnull NSString *)parseClassName {
     return @"VentAudience";

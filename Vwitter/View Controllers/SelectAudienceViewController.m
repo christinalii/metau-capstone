@@ -10,6 +10,7 @@
 #import "Follow.h"
 #import "AudienceMemberCell.h"
 
+
 @interface SelectAudienceViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postVentButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -70,6 +71,17 @@
 }
 
 - (IBAction)didTapVent:(id)sender {
+    [Vent postVent:self.ventContent withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"vent post succeeded!");
+        }
+        else {
+            NSLog(@"vent post failed");
+            NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
+        }
+    }];
+    
+    
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
