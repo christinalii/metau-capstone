@@ -29,8 +29,6 @@
 
 - (void)loadData {
     PFQuery *userQuery = [PFUser query];
-//    [postQuery orderByDescending:@"createdAt"];
-//    [postQuery includeKey:@"author"];
     userQuery.limit = 20;
     
 //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -38,7 +36,6 @@
     [userQuery findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable users, NSError * _Nullable error) {
         if (users) {
             NSLog(@"😎😎😎 Successfully loaded search users timeline");
-            // do something with the data fetched
             self.arrayOfUsers = users.mutableCopy;
 //            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.tableView reloadData];

@@ -29,6 +29,7 @@
 		298B8307287C9C7B00EE54B8 /* UIViewController+ErrorAlertPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B8306287C9C7B00EE54B8 /* UIViewController+ErrorAlertPresenter.m */; };
 		298B830A287CD3E000EE54B8 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B8309287CD3E000EE54B8 /* UserCell.m */; };
 		298B830D287CD99E00EE54B8 /* Follow.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B830C287CD99E00EE54B8 /* Follow.m */; };
+		298B8310287DFF5500EE54B8 /* AudienceMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B830F287DFF5500EE54B8 /* AudienceMemberCell.m */; };
 		BDA7F819A0286F3B39A008CB /* Pods_VwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */; };
 		DA1CE8C75883D35ED75901CF /* Pods_Vwitter_VwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,8 @@
 		298B8309287CD3E000EE54B8 /* UserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		298B830B287CD99E00EE54B8 /* Follow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Follow.h; sourceTree = "<group>"; };
 		298B830C287CD99E00EE54B8 /* Follow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Follow.m; sourceTree = "<group>"; };
+		298B830E287DFF5500EE54B8 /* AudienceMemberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudienceMemberCell.h; sourceTree = "<group>"; };
+		298B830F287DFF5500EE54B8 /* AudienceMemberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudienceMemberCell.m; sourceTree = "<group>"; };
 		331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vwitter_VwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A5D72133CCDA51BC7A511AE /* Pods-Vwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vwitter.debug.xcconfig"; path = "Target Support Files/Pods-Vwitter/Pods-Vwitter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				298B8303287935F900EE54B8 /* Keys.plist */,
 				298B8305287C9C7B00EE54B8 /* UIViewController+ErrorAlertPresenter.h */,
 				298B8306287C9C7B00EE54B8 /* UIViewController+ErrorAlertPresenter.m */,
+				298B830E287DFF5500EE54B8 /* AudienceMemberCell.h */,
+				298B830F287DFF5500EE54B8 /* AudienceMemberCell.m */,
 			);
 			path = Vwitter;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				298B82F22878C95E00EE54B8 /* ComposeViewController.m in Sources */,
 				298B83022878EAFA00EE54B8 /* SignupViewController.m in Sources */,
 				298B82FF2878E3F100EE54B8 /* ProfileViewController.m in Sources */,
+				298B8310287DFF5500EE54B8 /* AudienceMemberCell.m in Sources */,
 				298B82EF2878AF3000EE54B8 /* HomeViewController.m in Sources */,
 				298B82F52878D5EA00EE54B8 /* SelectAudienceViewController.m in Sources */,
 				298B82B928763A2100EE54B8 /* SceneDelegate.m in Sources */,
