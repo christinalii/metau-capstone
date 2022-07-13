@@ -289,14 +289,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AudienceMemberCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudienceMemberCell" id="NRY-dc-SG3" customClass="AudienceMemberCell">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NRY-dc-SG3" id="S5M-TQ-cjS">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIx-fr-5VM">
-                                                    <rect key="frame" x="20" y="11" width="42" height="21.5"/>
+                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -407,7 +407,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4lG-Kj-C27">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="95" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="116" id="htg-Gf-4YN" customClass="UserCell">
@@ -447,19 +447,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="at9-EW-yO4">
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yJh-uD-QaN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4lG-Kj-C27" firstAttribute="top" secondItem="yJh-uD-QaN" secondAttribute="top" id="0Mp-4M-RlJ"/>
-                            <constraint firstItem="4lG-Kj-C27" firstAttribute="bottom" secondItem="yJh-uD-QaN" secondAttribute="bottom" id="9zL-tR-DEa"/>
+                            <constraint firstItem="4lG-Kj-C27" firstAttribute="bottom" secondItem="yJh-uD-QaN" secondAttribute="bottom" constant="44" id="9zL-tR-DEa"/>
                             <constraint firstItem="4lG-Kj-C27" firstAttribute="trailing" secondItem="yJh-uD-QaN" secondAttribute="trailing" id="AcJ-NX-tTO"/>
                             <constraint firstItem="4lG-Kj-C27" firstAttribute="leading" secondItem="yJh-uD-QaN" secondAttribute="leading" id="X33-HI-VjH"/>
+                            <constraint firstItem="4lG-Kj-C27" firstAttribute="top" secondItem="at9-EW-yO4" secondAttribute="bottom" id="czS-UA-eEh"/>
+                            <constraint firstItem="at9-EW-yO4" firstAttribute="leading" secondItem="yJh-uD-QaN" secondAttribute="leading" id="dMf-bk-cwe"/>
+                            <constraint firstItem="at9-EW-yO4" firstAttribute="top" secondItem="yJh-uD-QaN" secondAttribute="top" id="f51-dy-hfK"/>
+                            <constraint firstItem="at9-EW-yO4" firstAttribute="trailing" secondItem="yJh-uD-QaN" secondAttribute="trailing" id="jHD-Nt-CEd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="Jwj-z6-UiI"/>
                     <navigationItem key="navigationItem" id="Vxz-Jy-aJv"/>
                     <connections>
+                        <outlet property="searchBar" destination="at9-EW-yO4" id="Thq-4y-1YB"/>
                         <outlet property="tableView" destination="4lG-Kj-C27" id="0cP-9X-BUJ"/>
                     </connections>
                 </viewController>

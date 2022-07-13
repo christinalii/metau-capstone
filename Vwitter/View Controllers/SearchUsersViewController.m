@@ -9,10 +9,12 @@
 #import "UserCell.h"
 #import <Parse/Parse.h>
 
-@interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *arrayOfUsers;
+@property (strong, nonatomic) NSArray *filteredData;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -25,6 +27,9 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.searchBar.delegate = self;
+    self.filteredData = self.arrayOfUsers;
+    
 }
 
 - (void)loadData {
@@ -37,6 +42,7 @@
         if (users) {
             NSLog(@"😎😎😎 Successfully loaded search users timeline");
             self.arrayOfUsers = users.mutableCopy;
+            self.filteredData = self.arrayOfUsers;
 //            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.tableView reloadData];
             
@@ -49,15 +55,35 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.arrayOfUsers.count;
+    return self.filteredData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
 
-    cell.user = self.arrayOfUsers[indexPath.row];
+    cell.user = self.filteredData[indexPath.row];
 
     return cell;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    if (searchText.length != 0) {
+        
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFUser *evaluatedObject, NSDictionary *bindings) {
+            return [evaluatedObject.username containsString:searchText];
+        }];
+        self.filteredData = [self.arrayOfUsers filteredArrayUsingPredicate:predicate];
+        
+        NSLog(@"%@", self.filteredData);
+        
+    }
+    else {
+        self.filteredData = self.arrayOfUsers;
+    }
+    
+    [self.tableView reloadData];
+ 
 }
 
 /*
