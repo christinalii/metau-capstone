@@ -6,6 +6,7 @@
 //
 
 #import "AudienceMemberCell.h"
+#import "SelectAudienceViewController.h"
 
 @implementation AudienceMemberCell
 

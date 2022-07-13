@@ -9,12 +9,14 @@
 #import <Parse/Parse.h>
 #import "Follow.h"
 #import "AudienceMemberCell.h"
-
+#import "Vent.h"
+#import "VentAudience.h"
 
 @interface SelectAudienceViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postVentButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *arrayOfAudienceMembers;
+@property (strong, nonatomic) NSMutableArray *arrayOfSelectedAudience;
 
 @end
 
@@ -22,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.arrayOfSelectedAudience = [[NSMutableArray alloc] init];
+    self.tableView.allowsMultipleSelection = YES;
     [self loadData];
     
     // Do any additional setup after loading the view.
@@ -70,16 +74,41 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
+    tableViewCell.accessoryView.hidden = NO;
+    tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    [self.arrayOfSelectedAudience addObject:self.arrayOfAudienceMembers[indexPath.row]];
+    
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
+    tableViewCell.accessoryView.hidden = YES;
+    tableViewCell.accessoryType = UITableViewCellAccessoryNone;
+    
+    [self.arrayOfSelectedAudience removeObject:self.arrayOfAudienceMembers[indexPath.row]];
+
+}
+
 - (IBAction)didTapVent:(id)sender {
     [Vent postVent:self.ventContent withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"vent post succeeded!");
+            
+            
         }
         else {
             NSLog(@"vent post failed");
             NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
         }
     }];
+    
+    
+    
+    
     
     
     [self dismissViewControllerAnimated:true completion:nil];
