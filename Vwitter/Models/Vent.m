@@ -16,13 +16,13 @@
     return @"Vent";
 }
 
-+ (void)postVent:( NSString * _Nonnull)ventContent withCompletion: (PFBooleanResultBlock  _Nullable)completion {
-    Vent *newVent = [Vent new];
-    newVent.author = [PFUser currentUser];
-    newVent.ventContent = ventContent;
-    
-    [newVent saveInBackgroundWithBlock: completion];
-    
+- (instancetype)initWithVentContent:(NSString *)ventContent {
+    if (self = [super init]) {
+        // Initialize self
+        self.author = [PFUser currentUser];
+        self.ventContent = ventContent;
+    }
+    return self;
 }
 
 @end

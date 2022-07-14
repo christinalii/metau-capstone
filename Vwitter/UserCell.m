@@ -28,31 +28,26 @@
 
 }
 
-//- (BOOL)isFollowing {
+//- (NSArray<PFUser *> *)listFollowing {
 //
 //    PFQuery *thisFollow = [Follow query];
-//    [thisFollow whereKey:@"followingUserId" equalTo:self.user];
+////    [thisFollow whereKey:@"followingUserId" equalTo:self.user];
 //    [thisFollow whereKey:@"currentUserId" equalTo:[PFUser currentUser]];
 //    [thisFollow whereKey:@"approved" equalTo:@YES];
 //
-//    [thisFollow findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+//    [thisFollow findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> *results, NSError *error) {
 //        if (error) {
 //            NSLog(@"there was an error");
-//            return NO;
+//            return [NSArray<PFUser *> new];
 //        }
 //        else {
-//            if (results.count > 0){
-//                return YES;
-//            }
-//            else {
-//                return NO;
-//            }
+//            return results;
 //        }
 //    }];
 //}
 
 - (void)refreshData {
-    
+
     NSString *at = @"@";
     self.username.text = [NSString stringWithFormat:@"%@%@", at, self.user.username];
     

@@ -15,7 +15,7 @@
 @property (strong, nonatomic) PFUser * _Nullable userId;
 @property (strong, nonatomic) GroupDetails * _Nullable groupId;
 
-+ (void)createAudience: (Vent * _Nonnull)ventId withAudience: (NSMutableArray *_Nullable)audienceArray withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (instancetype)initWithVentId:(Vent *)ventId withAudience:(NSObject *)audience;
 
 
 @end

@@ -94,17 +94,55 @@
 }
 
 - (IBAction)didTapVent:(id)sender {
-    [Vent postVent:self.ventContent withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    
+    Vent *currentVent = [[Vent alloc] initWithVentContent:self.ventContent];
+    
+    NSMutableArray *ventAudiences = [[NSMutableArray alloc] init];
+    
+    [currentVent saveInBackgroundWithBlock: ^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"vent post succeeded!");
-            
-            
+            for (id audience in self.arrayOfSelectedAudience) {
+                VentAudience *newVA = [[VentAudience alloc] initWithVentId:currentVent withAudience:audience];
+                
+                [ventAudiences addObject:newVA];
+            }
+
+            [PFObject saveAllInBackground:ventAudiences block:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    NSLog(@"vent audiences succeeded!");
+                }
+                else {
+                    NSLog(@"vent audiences failed!");
+                    [currentVent deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (succeeded) {
+                            NSLog(@"VA error, vent deleted!");
+                        }
+                        else {
+                            NSLog(@"VA error, vent NOT deleted!");
+                        }
+                    }];
+                }
+                
+            }];
         }
         else {
             NSLog(@"vent post failed");
             NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
         }
     }];
+    
+//    [Vent postVent:self.ventContent withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"vent post succeeded!");
+//
+////            make ventaudiences
+//        }
+//        else {
+//            NSLog(@"vent post failed");
+//            NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
+//        }
+//    }];
     
     
     

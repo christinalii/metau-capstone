@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *ventContent;
 
-+ (void)postVent:( NSString * _Nonnull)ventContent withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (instancetype)initWithVentContent:(NSString *)ventContent;
 
 @end
 

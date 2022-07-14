@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 
 @interface HomeViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfUsers;
 @property (strong, nonatomic) NSArray *filteredData;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+// make a property that stores the people that the user is following
 
 @end
 
@@ -60,6 +61,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
+//    if this userid is in the followingSet, then do stuff inside the usercell
 
     cell.user = self.filteredData[indexPath.row];
 
