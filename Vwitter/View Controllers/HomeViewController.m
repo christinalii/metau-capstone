@@ -9,9 +9,13 @@
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
+#import "Vent.h"
+#import "VentCell.h"
+#import "VentAudience.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray<Vent *> *arrayOfVents;
 
 @end
 
@@ -20,6 +24,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self loadData];
+}
+
+- (void)loadData {
+    PFQuery *vaQuery = [VentAudience query];
+    [vaQuery orderByDescending:@"createdAt"];
+    [vaQuery whereKey:@"userId" equalTo:[PFUser currentUser]];
+    [vaQuery includeKey:@"ventId"];
+    
+    vaQuery.limit = 20;
+    
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    [vaQuery findObjectsInBackgroundWithBlock:^(NSArray<VentAudience *> * _Nullable ventAudiences, NSError * _Nullable error) {
+        if (ventAudiences) {
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+            // do something with the tdata fetched
+            self.arrayOfVents = [ventAudiences valueForKey:@"ventId"];
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
+            
+        }
+        else {
+            // handle error
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+    }];
 }
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -39,6 +73,22 @@
         }
         
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self loadData];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.arrayOfVents.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    VentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VentCell" forIndexPath:indexPath];
+
+    cell.vent = self.arrayOfVents[indexPath.row];
+
+    return cell;
 }
 
 

@@ -131,24 +131,7 @@
             NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
         }
     }];
-    
-//    [Vent postVent:self.ventContent withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (succeeded) {
-//            NSLog(@"vent post succeeded!");
-//
-////            make ventaudiences
-//        }
-//        else {
-//            NSLog(@"vent post failed");
-//            NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
-//        }
-//    }];
-    
-    
-    
-    
-    
-    
+
     [self dismissViewControllerAnimated:true completion:nil];
 }
 

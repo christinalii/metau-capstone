@@ -108,6 +108,7 @@
 		298B8327287E1D8700EE54B8 /* GroupMembership.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupMembership.m; sourceTree = "<group>"; };
 		298B832928808A8E00EE54B8 /* VentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VentCell.h; sourceTree = "<group>"; };
 		298B832A28808A8E00EE54B8 /* VentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VentCell.m; sourceTree = "<group>"; };
+		298B832C2880D52D00EE54B8 /* VWHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VWHelpers.h; sourceTree = "<group>"; };
 		331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vwitter_VwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A5D72133CCDA51BC7A511AE /* Pods-Vwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vwitter.debug.xcconfig"; path = "Target Support Files/Pods-Vwitter/Pods-Vwitter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				298B830F287DFF5500EE54B8 /* AudienceMemberCell.m */,
 				298B832928808A8E00EE54B8 /* VentCell.h */,
 				298B832A28808A8E00EE54B8 /* VentCell.m */,
+				298B832C2880D52D00EE54B8 /* VWHelpers.h */,
 			);
 			path = Vwitter;
 			sourceTree = "<group>";

@@ -6,10 +6,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Vent.h"
+#import <Parse/Parse.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VentCell : UITableViewCell
+@property (strong, nonatomic) Vent *vent;
+@property (weak, nonatomic) IBOutlet UILabel *screenName;
+@property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UILabel *date;
+@property (weak, nonatomic) IBOutlet UILabel *ventContent;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 
 @end
 

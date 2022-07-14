@@ -9,6 +9,7 @@ target 'Vwitter' do
   pod 'Parse'
   pod 'Parse/UI'
   pod 'UITextView+Placeholder'
+  pod 'DateTools'
 
   target 'VwitterTests' do
     inherit! :search_paths
