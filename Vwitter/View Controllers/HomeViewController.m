@@ -12,10 +12,13 @@
 #import "Vent.h"
 #import "VentCell.h"
 #import "VentAudience.h"
+#import "UIViewController+ErrorAlertPresenter.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray<Vent *> *arrayOfVents;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic) BOOL isRefreshing;
 
 @end
 
@@ -27,6 +30,15 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(beginRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    [self loadData];
+}
+
+- (void)beginRefresh {
+    self.isRefreshing = YES;
     [self loadData];
 }
 
@@ -46,13 +58,27 @@
             // do something with the tdata fetched
             self.arrayOfVents = [ventAudiences valueForKey:@"ventId"];
 //            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             [self.tableView reloadData];
+            
+            if (self.isRefreshing) {
+                [self.refreshControl endRefreshing];
+                self.isRefreshing = NO;
+            }
             
         }
         else {
             // handle error
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+            
+            if (self.isRefreshing) {
+                [self.refreshControl endRefreshing];
+                self.isRefreshing = NO;
+                [self presentErrorMessageWithTitle:@"Error" message:@"There was an error refreshing."];
+                
+            }
         }
+
     }];
 }
 - (IBAction)didTapLogout:(id)sender {
