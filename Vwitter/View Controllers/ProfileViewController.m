@@ -7,9 +7,13 @@
 
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
+#import "Vent.h"
+#import "VentCell.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray<Vent *> *arrayOfVents;
 
 @end
 
@@ -19,16 +23,53 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.username.text = [PFUser currentUser].username;
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self loadData];
 }
 
-/*
-#pragma mark - Navigation
+- (void)loadData {
+    PFQuery *vaQuery = [Vent query];
+    [vaQuery orderByDescending:@"createdAt"];
+    [vaQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    [vaQuery includeKey:@"author"];
+    
+    vaQuery.limit = 20;
+    
+    __weak typeof(self) weakSelf = self;
+    [vaQuery findObjectsInBackgroundWithBlock:^(NSArray<Vent *> * _Nullable vents, NSError * _Nullable error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            NSLog(@"I got killed!");
+            return;
+        }
+        if (vents) {
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+            strongSelf.arrayOfVents = vents.mutableCopy;
+            
+            [strongSelf.tableView reloadData];
+            
+        }
+        else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+        }
+
+    }];
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.arrayOfVents.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    VentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VentCell" forIndexPath:indexPath];
+
+    cell.vent = self.arrayOfVents[indexPath.row];
+
+    return cell;
+}
 
 @end

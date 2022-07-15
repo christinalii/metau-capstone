@@ -30,15 +30,21 @@
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
     newUser.screenName = self.screennameField.text;
-
+    
+    __weak typeof(self) weakSelf = self;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            NSLog(@"I got killed!");
+            return;
+        }
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
-            [self presentErrorMessageWithTitle:@"Error" message:error.localizedDescription];
+            [strongSelf presentErrorMessageWithTitle:@"Error" message:error.localizedDescription];
             
         } else {
             NSLog(@"User registered successfully");
-            [self performSegueWithIdentifier:@"signupSegue" sender:nil];
+            [strongSelf performSegueWithIdentifier:@"signupSegue" sender:nil];
         }
     }];
 }
@@ -46,18 +52,5 @@
 - (IBAction)didTapSignup:(id)sender {
     [self registerUser];
 }
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

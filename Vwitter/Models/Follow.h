@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) PFUser *currentUserId;
 @property (nonatomic, assign) BOOL approved;
 
-+ (void)makeFollow: (PFUser * _Nonnull)followingUserId withApproved: (BOOL)approved withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (instancetype)initWithFollowing:(PFUser *)followingUserId withApproved:(BOOL)approved;
 
 @end
 

@@ -17,18 +17,15 @@
     return @"Follow";
 }
 
-+ (void)makeFollow: (PFUser * _Nonnull)followingUserId withApproved: (BOOL)approved withCompletion: (PFBooleanResultBlock  _Nullable)completion {
-    
-    Follow *newFollow = [Follow new];
-    newFollow.followingUserId = followingUserId;
-    newFollow.currentUserId = [PFUser currentUser];
-    newFollow.approved = approved;
-    
-    [newFollow saveInBackgroundWithBlock: completion];
-    
+- (instancetype)initWithFollowing:(PFUser *)followingUserId withApproved:(BOOL)approved {
+    if (self = [super init]) {
+        // Initialize self
+        self.currentUserId = [PFUser currentUser];
+        self.followingUserId = followingUserId;
+        self.approved = approved;
+    }
+    return self;
 }
-
-
 
 @end
 

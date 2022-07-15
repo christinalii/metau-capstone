@@ -36,20 +36,21 @@
 - (void)loadData {
     PFQuery *userQuery = [PFUser query];
     userQuery.limit = 20;
-    
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+    __weak typeof(self) weakSelf = self;
     [userQuery findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable users, NSError * _Nullable error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            NSLog(@"I got killed!");
+            return;
+        }
         if (users) {
             NSLog(@"😎😎😎 Successfully loaded search users timeline");
-            self.arrayOfUsers = users.mutableCopy;
-            self.filteredData = self.arrayOfUsers;
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.tableView reloadData];
+            strongSelf.arrayOfUsers = users.mutableCopy;
+            strongSelf.filteredData = strongSelf.arrayOfUsers;
+            [strongSelf.tableView reloadData];
             
         }
         else {
-            // handle error
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
@@ -87,15 +88,5 @@
     [self.tableView reloadData];
  
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

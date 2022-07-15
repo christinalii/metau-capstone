@@ -67,13 +67,13 @@
 }
 
 - (IBAction)didFollow:(id)sender {
-    [Follow makeFollow:self.user withApproved:YES withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    Follow *newFollow =  [[Follow alloc] initWithFollowing:self.user withApproved:YES];
+    [newFollow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-            NSLog(@"follow succeeded!");
+            NSLog(@"follow worked");
+            
         }
-        else {
-            NSLog(@"follow failed");
-            NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
+        else {NSLog(@"follow had an error: %@", error.localizedDescription);
         }
     }];
     

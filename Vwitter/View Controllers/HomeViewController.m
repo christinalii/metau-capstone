@@ -51,18 +51,23 @@
     vaQuery.limit = 20;
     
 
-
+    __weak typeof(self) weakSelf = self;
     [vaQuery findObjectsInBackgroundWithBlock:^(NSArray<VentAudience *> * _Nullable ventAudiences, NSError * _Nullable error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            NSLog(@"I got killed!");
+            return;
+        }
         if (ventAudiences) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             // do something with the tdata fetched
-            self.arrayOfVents = [ventAudiences valueForKey:@"ventId"];
+            strongSelf.arrayOfVents = [ventAudiences valueForKey:@"ventId"];
             
-            [self.tableView reloadData];
+            [strongSelf.tableView reloadData];
             
-            if (self.isRefreshing) {
-                [self.refreshControl endRefreshing];
-                self.isRefreshing = NO;
+            if (strongSelf.isRefreshing) {
+                [strongSelf.refreshControl endRefreshing];
+                strongSelf.isRefreshing = NO;
             }
             
         }
@@ -70,10 +75,10 @@
             // handle error
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
             
-            if (self.isRefreshing) {
-                [self.refreshControl endRefreshing];
-                self.isRefreshing = NO;
-                [self presentErrorMessageWithTitle:@"Error" message:@"There was an error refreshing."];
+            if (strongSelf.isRefreshing) {
+                [strongSelf.refreshControl endRefreshing];
+                strongSelf.isRefreshing = NO;
+                [strongSelf presentErrorMessageWithTitle:@"Error" message:@"There was an error refreshing."];
                 
             }
         }
@@ -115,16 +120,5 @@
 
     return cell;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -28,8 +28,7 @@
     self.arrayOfSelectedAudience = [[NSMutableArray alloc] init];
     self.tableView.allowsMultipleSelection = YES;
     [self loadData];
-    
-    // Do any additional setup after loading the view.
+
     self.postVentButton.layer.cornerRadius = 20;
     
     self.tableView.dataSource = self;
@@ -44,20 +43,21 @@
     [audienceQuery includeKey:@"currentUserId"];
     audienceQuery.limit = 20;
     
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+    __weak typeof(self) weakSelf = self;
     [audienceQuery findObjectsInBackgroundWithBlock:^(NSArray<Follow *> * _Nullable follows, NSError * _Nullable error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+                NSLog(@"I got killed!");
+                return;
+        }
         if (follows) {
             NSLog(@"😎😎😎 Successfully loaded search users timeline");
-            // do something with the data fetched
             NSArray *arrayOfFollowers = [follows valueForKey:@"currentUserId"];
-            self.arrayOfAudienceMembers = arrayOfFollowers.mutableCopy;
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.tableView reloadData];
+            strongSelf.arrayOfAudienceMembers = arrayOfFollowers.mutableCopy;
+            [strongSelf.tableView reloadData];
             
         }
         else {
-            // handle error
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
@@ -101,11 +101,16 @@
     Vent *currentVent = [[Vent alloc] initWithVentContent:self.ventContent];
     
     NSMutableArray *ventAudiences = [[NSMutableArray alloc] init];
-    
+    __weak typeof(self) weakSelf = self;
     [currentVent saveInBackgroundWithBlock: ^(BOOL succeeded, NSError * _Nullable error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            NSLog(@"I got killed!");
+            return;
+        }
         if (succeeded) {
             NSLog(@"vent post succeeded!");
-            for (id audience in self.arrayOfSelectedAudience) {
+            for (id audience in strongSelf.arrayOfSelectedAudience) {
                 VentAudience *newVA = [[VentAudience alloc] initWithVentId:currentVent withAudience:audience];
                 
                 [ventAudiences addObject:newVA];
@@ -116,7 +121,7 @@
                 if (succeeded) {
                     NSLog(@"vent audiences succeeded!");
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    [self dismissViewControllerAnimated:true completion:nil];
+                    [strongSelf dismissViewControllerAnimated:true completion:nil];
                 }
                 else {
                     NSLog(@"vent audiences failed!");
@@ -128,7 +133,7 @@
                             NSLog(@"VA error, vent NOT deleted!");
                         }
                     }];
-                    [self dismissViewControllerAnimated:true completion:nil];
+                    [strongSelf dismissViewControllerAnimated:true completion:nil];
                 }
                 
             }];
@@ -137,22 +142,11 @@
             NSLog(@"vent post failed");
             NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self dismissViewControllerAnimated:true completion:nil];
+            [strongSelf dismissViewControllerAnimated:true completion:nil];
         }
     }];
 
     
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
