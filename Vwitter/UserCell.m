@@ -28,31 +28,13 @@
 
 }
 
-//- (NSArray<PFUser *> *)listFollowing {
-//
-//    PFQuery *thisFollow = [Follow query];
-////    [thisFollow whereKey:@"followingUserId" equalTo:self.user];
-//    [thisFollow whereKey:@"currentUserId" equalTo:[PFUser currentUser]];
-//    [thisFollow whereKey:@"approved" equalTo:@YES];
-//
-//    [thisFollow findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> *results, NSError *error) {
-//        if (error) {
-//            NSLog(@"there was an error");
-//            return [NSArray<PFUser *> new];
-//        }
-//        else {
-//            return results;
-//        }
-//    }];
-//}
-
 - (void)refreshData {
 
     NSString *at = @"@";
     self.username.text = [NSString stringWithFormat:@"%@%@", at, self.user.username];
     
     [PFCloud callFunctionInBackground:@"existsFollow"
-                       withParameters:@{@"currentUserId":[PFUser currentUser].objectId, @"followingUserId":self.user.objectId}
+                       withParameters:@{@"currentUserObjectId":[PFUser currentUser].objectId, @"followingUserObjectId":self.user.objectId}
                                 block:^(id exists, NSError *error) {
       if (!error) {
           NSLog (@"%d", ((NSNumber *)exists).boolValue);

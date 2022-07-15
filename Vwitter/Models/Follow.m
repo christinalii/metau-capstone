@@ -12,6 +12,8 @@
 @dynamic followingUserId;
 @dynamic currentUserId;
 @dynamic approved;
+@dynamic followingUserObjectId;
+@dynamic currentUserObjectId;
 
 + (nonnull NSString *)parseClassName {
     return @"Follow";
@@ -21,8 +23,11 @@
     if (self = [super init]) {
         // Initialize self
         self.currentUserId = [PFUser currentUser];
+        self.currentUserObjectId = self.currentUserId.objectId;
         self.followingUserId = followingUserId;
+        self.followingUserObjectId = self.followingUserId.objectId;
         self.approved = approved;
+        
     }
     return self;
 }
