@@ -50,14 +50,13 @@
     
     vaQuery.limit = 20;
     
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
 
     [vaQuery findObjectsInBackgroundWithBlock:^(NSArray<VentAudience *> * _Nullable ventAudiences, NSError * _Nullable error) {
         if (ventAudiences) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             // do something with the tdata fetched
             self.arrayOfVents = [ventAudiences valueForKey:@"ventId"];
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             [self.tableView reloadData];
             

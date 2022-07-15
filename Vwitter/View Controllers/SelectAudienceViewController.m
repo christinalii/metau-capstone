@@ -11,6 +11,7 @@
 #import "AudienceMemberCell.h"
 #import "Vent.h"
 #import "VentAudience.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface SelectAudienceViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postVentButton;
@@ -95,6 +96,8 @@
 
 - (IBAction)didTapVent:(id)sender {
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     Vent *currentVent = [[Vent alloc] initWithVentContent:self.ventContent];
     
     NSMutableArray *ventAudiences = [[NSMutableArray alloc] init];
@@ -106,11 +109,14 @@
                 VentAudience *newVA = [[VentAudience alloc] initWithVentId:currentVent withAudience:audience];
                 
                 [ventAudiences addObject:newVA];
+                
             }
 
             [PFObject saveAllInBackground:ventAudiences block:^(BOOL succeeded, NSError * _Nullable error) {
                 if (succeeded) {
                     NSLog(@"vent audiences succeeded!");
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [self dismissViewControllerAnimated:true completion:nil];
                 }
                 else {
                     NSLog(@"vent audiences failed!");
@@ -122,6 +128,7 @@
                             NSLog(@"VA error, vent NOT deleted!");
                         }
                     }];
+                    [self dismissViewControllerAnimated:true completion:nil];
                 }
                 
             }];
@@ -129,10 +136,12 @@
         else {
             NSLog(@"vent post failed");
             NSLog(@"😫😫😫 Error posting: %@", error.localizedDescription);
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self dismissViewControllerAnimated:true completion:nil];
         }
     }];
 
-    [self dismissViewControllerAnimated:true completion:nil];
+    
 }
 
 
