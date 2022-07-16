@@ -33,6 +33,10 @@
     NSString *at = @"@";
     self.username.text = [NSString stringWithFormat:@"%@%@", at, self.user.username];
     
+    if ([self.user.objectId isEqualToString:[PFUser currentUser].objectId]) {
+        self.followStatusButton.hidden = YES;
+    }
+    
     [PFCloud callFunctionInBackground:@"existsFollow"
                        withParameters:@{@"currentUserObjectId":[PFUser currentUser].objectId, @"followingUserObjectId":self.user.objectId}
                                 block:^(id exists, NSError *error) {
