@@ -11,10 +11,11 @@
 
 @dynamic screenName;
 
-- (instancetype)initWithScreenName:(NSString *)screenName {
+- (instancetype)initWithScreenName:(NSString *)screenName withUsername:(NSString *)username withPassword:(NSString *)password {
     if (self = [super init]) {
-        // Initialize self
         self.screenName = screenName;
+        self.username = username;
+        self.password = password;
     }
     return self;
 }

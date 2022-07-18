@@ -19,10 +19,8 @@
 
 - (instancetype)initWithVentContent:(NSString *)ventContent {
     if (self = [super init]) {
-        // Initialize self
         self.author = [PFUser currentUser];
         self.authorUserId = self.author.objectId;
-//        self.authorUserId = [PFUser currentUser].objectId;
         self.ventContent = ventContent;
     }
     return self;

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *screenName;
 
-- (instancetype)initWithScreenName:(NSString *)screenName;
+- (instancetype)initWithScreenName:(NSString *)screenName withUsername:(NSString *)username withPassword:(NSString *)password;
 
 @end
 

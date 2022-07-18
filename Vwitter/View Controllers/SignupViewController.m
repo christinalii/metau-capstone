@@ -25,10 +25,7 @@
 
 - (void)registerUser {
     
-    VWUser *newUser =  [[VWUser alloc] initWithScreenName:self.screennameField.text];
-
-    newUser.username = self.usernameField.text;
-    newUser.password = self.passwordField.text;
+    VWUser *newUser =  [[VWUser alloc] initWithScreenName:self.screennameField.text withUsername:self.usernameField.text withPassword:self.passwordField.text];
     
     __weak typeof(self) weakSelf = self;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
