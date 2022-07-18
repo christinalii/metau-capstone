@@ -19,7 +19,7 @@
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
 
         NSString *path = [[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"];
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
 
         configuration.applicationId = [dict objectForKey: @"applicationId"];
         configuration.clientKey = [dict objectForKey: @"clientKey"];

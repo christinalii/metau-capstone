@@ -38,9 +38,9 @@
 
 - (void)loadData {
     PFQuery *audienceQuery = [Follow query];
-    [audienceQuery whereKey:@"followingUserId" equalTo:[PFUser currentUser]];
+    [audienceQuery whereKey:@"followingUser" equalTo:[PFUser currentUser]];
     [audienceQuery whereKey:@"approved" equalTo:@YES];
-    [audienceQuery includeKey:@"currentUserId"];
+    [audienceQuery includeKey:@"currentUser"];
     audienceQuery.limit = 20;
     
     __weak typeof(self) weakSelf = self;
@@ -52,7 +52,7 @@
         }
         if (follows) {
             NSLog(@"😎😎😎 Successfully loaded search users timeline");
-            NSArray *arrayOfFollowers = [follows valueForKey:@"currentUserId"];
+            NSArray *arrayOfFollowers = [follows valueForKey:@"currentUser"];
             strongSelf.arrayOfAudienceMembers = arrayOfFollowers.mutableCopy;
             [strongSelf.tableView reloadData];
             

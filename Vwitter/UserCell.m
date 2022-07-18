@@ -38,7 +38,7 @@
     }
     
     [PFCloud callFunctionInBackground:@"existsFollow"
-                       withParameters:@{@"currentUserObjectId":[PFUser currentUser].objectId, @"followingUserObjectId":self.user.objectId}
+                       withParameters:@{@"currentUserId":[PFUser currentUser].objectId, @"followingUserId":self.user.objectId}
                                 block:^(id exists, NSError *error) {
       if (!error) {
           NSLog (@"%d", ((NSNumber *)exists).boolValue);
@@ -55,8 +55,8 @@
 - (IBAction)didFollow:(id)sender {
 
     PFQuery *thisFollow = [Follow query];
-    [thisFollow whereKey:@"followingUserObjectId" equalTo:self.user.objectId];
-    [thisFollow whereKey:@"currentUserObjectId" equalTo:[PFUser currentUser].objectId];
+    [thisFollow whereKey:@"followingUserId" equalTo:self.user.objectId];
+    [thisFollow whereKey:@"currentUserId" equalTo:[PFUser currentUser].objectId];
     
     __weak typeof(self) weakSelf = self;
     [thisFollow findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
