@@ -9,8 +9,8 @@
 
 @implementation GroupMembership
 
-@dynamic groupId;
-@dynamic userId;
+@dynamic group;
+@dynamic user;
 
 + (nonnull NSString *)parseClassName {
     return @"GroupMembership";

@@ -46,8 +46,8 @@
 - (void)loadData {
     PFQuery *vaQuery = [VentAudience query];
     [vaQuery orderByDescending:@"createdAt"];
-    [vaQuery whereKey:@"userId" equalTo:[PFUser currentUser]];
-    [vaQuery includeKey:@"ventId"];
+    [vaQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+    [vaQuery includeKey:@"vent"];
     
     vaQuery.limit = 20;
     
@@ -62,7 +62,7 @@
         if (ventAudiences) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             // do something with the tdata fetched
-            strongSelf.arrayOfVents = [ventAudiences valueForKey:@"ventId"];
+            strongSelf.arrayOfVents = [ventAudiences valueForKey:@"vent"];
             
             [strongSelf.tableView reloadData];
             

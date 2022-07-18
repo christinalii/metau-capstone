@@ -9,24 +9,24 @@
 
 @implementation VentAudience
 
-@dynamic ventId;
-@dynamic userId;
-@dynamic groupId;
+@dynamic vent;
+@dynamic user;
+@dynamic group;
 
 + (nonnull NSString *)parseClassName {
     return @"VentAudience";
 }
 
-- (instancetype)initWithVentId:(Vent *)ventId withAudience:(NSObject *)audience {
+- (instancetype)initWithVent:(Vent *)vent withAudience:(NSObject *)audience {
     VentAudience *newVA = [VentAudience new];
-    newVA.ventId = ventId;
+    newVA.vent = vent;
     if ([audience isKindOfClass:[PFUser class]]) {
-        newVA.groupId = nil;
-        newVA.userId = audience;
+        newVA.group = nil;
+        newVA.user = audience;
     }
     else if ([audience isKindOfClass:[GroupDetails class]]) {
-        newVA.groupId = audience;
-        newVA.userId = nil;
+        newVA.group = audience;
+        newVA.user = nil;
     }
     return newVA;
 }

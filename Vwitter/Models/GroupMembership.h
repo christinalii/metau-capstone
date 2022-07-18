@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GroupMembership : PFObject<PFSubclassing>
 
-@property (strong, nonatomic) GroupDetails *groupId;
-@property (strong, nonatomic) PFUser *userId;
+@property (strong, nonatomic) GroupDetails *group;
+@property (strong, nonatomic) PFUser *user;
 
 @end
 

@@ -12,11 +12,11 @@
 
 @interface VentAudience : PFObject<PFSubclassing>
 
-@property (strong, nonatomic) Vent * _Nonnull ventId;
-@property (strong, nonatomic) PFUser * _Nullable userId;
-@property (strong, nonatomic) GroupDetails * _Nullable groupId;
+@property (strong, nonatomic) Vent * _Nonnull vent;
+@property (strong, nonatomic) PFUser * _Nullable user;
+@property (strong, nonatomic) GroupDetails * _Nullable group;
 
-- (instancetype)initWithVentId:(Vent *)ventId withAudience:(NSObject *)audience;
+- (instancetype)initWithVent:(Vent *)vent withAudience:(NSObject *)audience;
 
 
 @end

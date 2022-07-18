@@ -112,7 +112,7 @@
         if (succeeded) {
             NSLog(@"vent post succeeded!");
             for (id audience in strongSelf.arrayOfSelectedAudience) {
-                VentAudience *newVA = [[VentAudience alloc] initWithVentId:currentVent withAudience:audience];
+                VentAudience *newVA = [[VentAudience alloc] initWithVent:currentVent withAudience:audience];
                 
                 [ventAudiences addObject:newVA];
                 
