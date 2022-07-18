@@ -11,4 +11,12 @@
 
 @dynamic screenName;
 
+- (instancetype)initWithScreenName:(NSString *)screenName {
+    if (self = [super init]) {
+        // Initialize self
+        self.screenName = screenName;
+    }
+    return self;
+}
+
 @end
