@@ -6,7 +6,9 @@
 //
 
 #import <Parse/Parse.h>
+
 #import "GroupDetails.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GroupMembership : PFObject<PFSubclassing>

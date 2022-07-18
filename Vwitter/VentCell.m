@@ -6,7 +6,6 @@
 //
 
 #import "VentCell.h"
-
 #import "VWHelpers.h"
 #import "VWUser.h"
 #import "DateTools.h"

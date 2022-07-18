@@ -6,8 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Vent.h"
 #import <Parse/Parse.h>
+
+#import "Vent.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VentCell : UITableViewCell

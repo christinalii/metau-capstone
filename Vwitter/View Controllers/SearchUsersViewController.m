@@ -5,9 +5,10 @@
 //  Created by Christina Li on 7/8/22.
 //
 
+#import <Parse/Parse.h>
+
 #import "SearchUsersViewController.h"
 #import "UserCell.h"
-#import <Parse/Parse.h>
 
 @interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
