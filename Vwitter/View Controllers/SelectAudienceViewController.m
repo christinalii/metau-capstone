@@ -112,10 +112,19 @@
         if (succeeded) {
             NSLog(@"vent post succeeded!");
             for (id audience in strongSelf.arrayOfSelectedAudience) {
-                VentAudience *newVA = [[VentAudience alloc] initWithVent:currentVent withAudience:audience];
-                
-                [ventAudiences addObject:newVA];
-                
+                if ([audience isKindOfClass:[PFUser class]]) {
+                    VentAudience *newVA = [[VentAudience alloc] initWithUserAudience:audience withVent:currentVent];
+                    
+                    [ventAudiences addObject:newVA];
+                }
+                else if ([audience isKindOfClass:[GroupDetails class]]) {
+                    VentAudience *newVA = [[VentAudience alloc] initWithGroupAudience:audience withVent:currentVent];
+                    
+                    [ventAudiences addObject:newVA];
+                }
+                else {
+                    NSLog(@"not a possible audience type");
+                }
             }
 
             [PFObject saveAllInBackground:ventAudiences block:^(BOOL succeeded, NSError * _Nullable error) {

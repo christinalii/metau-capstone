@@ -16,7 +16,9 @@
 @property (strong, nonatomic) PFUser * _Nullable user;
 @property (strong, nonatomic) GroupDetails * _Nullable group;
 
-- (instancetype)initWithVent:(Vent *)vent withAudience:(NSObject *)audience;
+- (instancetype)initWithUserAudience:(PFUser *)user withVent:(Vent *)vent;
+
+- (instancetype)initWithGroupAudience:(GroupDetails *)group withVent:(Vent *)vent;
 
 
 @end
