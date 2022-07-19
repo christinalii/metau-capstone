@@ -8,6 +8,7 @@
 #import <Parse/Parse.h>
 
 #import "LoginViewController.h"
+#import "VWUser.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -29,7 +30,7 @@
     NSString *password = self.passwordField.text;
     
     __weak typeof(self) weakSelf = self;
-    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
+    [VWUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *  error) {
         typeof(self) strongSelf = weakSelf;
         if (!strongSelf) {
             NSLog(@"I got killed!");

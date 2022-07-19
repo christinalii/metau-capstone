@@ -196,14 +196,14 @@
                                                         <constraint firstAttribute="height" constant="100" id="BKg-CO-oGd"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7X-9Q-pR8">
-                                                    <rect key="frame" x="129" y="16" width="265" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7X-9Q-pR8">
+                                                    <rect key="frame" x="129" y="36.5" width="265" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gej-4O-hBY">
-                                                    <rect key="frame" x="129" y="11" width="0.0" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gej-4O-hBY">
+                                                    <rect key="frame" x="129" y="11" width="45.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -215,7 +215,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfh-4u-VYv">
-                                                    <rect key="frame" x="206" y="11" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="251.5" y="11" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -522,7 +522,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="followStatusButton" destination="ZE1-b9-6uX" id="PYH-Lu-yTq"/>
-                                            <outlet property="username" destination="1iI-Tt-WCb" id="2wu-05-qGa"/>
+                                            <outlet property="usernameLabel" destination="1iI-Tt-WCb" id="Ljd-LQ-bdg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -653,7 +653,7 @@
                     <navigationItem key="navigationItem" id="srL-Jo-aff"/>
                     <connections>
                         <outlet property="tableView" destination="UIv-jN-bF2" id="BiV-NL-5CU"/>
-                        <outlet property="username" destination="roF-jn-2Uw" id="K8B-eg-mdG"/>
+                        <outlet property="usernameLabel" destination="roF-jn-2Uw" id="bI4-26-6aO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ND0-lC-3Uz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

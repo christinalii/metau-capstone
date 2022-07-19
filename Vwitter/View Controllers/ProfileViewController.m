@@ -12,7 +12,7 @@
 #import "VentCell.h"
 
 @interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray<Vent *> *arrayOfVents;
 
@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.username.text = [PFUser currentUser].username;
+    self.usernameLabel.text = [PFUser currentUser].username;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

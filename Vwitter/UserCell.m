@@ -21,8 +21,10 @@
     // Configure the view for the selected state
 }
 
-- (void)setUser:(PFUser *)user{
-    _user = user;
+- (void)setUserCellViewModel:(UserCellViewModel *)userCellViewModel{
+    _userCellViewModel = userCellViewModel;
+    
+    self.user = self.userCellViewModel.user;
 
     [self refreshData];
 
@@ -31,25 +33,15 @@
 - (void)refreshData {
 
     NSString *at = @"@";
-    self.username.text = [NSString stringWithFormat:@"%@%@", at, self.user.username];
+    self.usernameLabel.text = [NSString stringWithFormat:@"%@%@", at, self.userCellViewModel.username];
     
-    if ([self.user.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        self.followStatusButton.hidden = YES;
+    if (self.userCellViewModel.isFollowing == YES) {
+        [self.followStatusButton setTitle:@"Following" forState:UIControlStateNormal];
     }
-    
-    [PFCloud callFunctionInBackground:@"existsFollow"
-                       withParameters:@{@"currentUserId":[PFUser currentUser].objectId, @"followingUserId":self.user.objectId}
-                                block:^(id exists, NSError *error) {
-      if (!error) {
-          NSLog (@"%d", ((NSNumber *)exists).boolValue);
-          if (((NSNumber *)exists).boolValue) {
-              [self.followStatusButton setTitle:@"Following" forState:UIControlStateNormal];
-          }
-          else {
-              [self.followStatusButton setTitle:@"Follow" forState:UIControlStateNormal];
-          }
-      }
-    }];
+    else {
+        [self.followStatusButton setTitle:@"Follow" forState:UIControlStateNormal];
+    }
+
 }
 
 - (IBAction)didFollow:(id)sender {
@@ -86,6 +78,7 @@
                 if (succeeded) {
                     NSLog(@"follow worked");
                     [strongSelf refreshData];
+//                    need to refresh entirety of all the cells
                     
                 }
                 else {

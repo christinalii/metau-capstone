@@ -6,6 +6,7 @@
 //
 
 #import "Vent.h"
+#import "VWUser.h"
 
 @implementation Vent
 
@@ -19,7 +20,7 @@
 
 - (instancetype)initWithVentContent:(NSString *)ventContent {
     if (self = [super init]) {
-        self.author = [PFUser currentUser];
+        self.author = [VWUser currentUser];
         self.authorUserId = self.author.objectId;
         self.ventContent = ventContent;
     }

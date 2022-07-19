@@ -17,7 +17,7 @@
     return @"VentAudience";
 }
 
-- (instancetype)initWithUserAudience:(PFUser *)user withVent:(Vent *)vent {
+- (instancetype)initWithUserAudience:(VWUser *)user withVent:(Vent *)vent {
     VentAudience *newVA = [VentAudience new];
     newVA.vent = vent;
     newVA.group = nil;
@@ -34,17 +34,5 @@
     
     return newVA;
 }
-
-//VentAudience *newVA = [VentAudience new];
-//newVA.vent = vent;
-//if ([audience isKindOfClass:[PFUser class]]) {
-//    newVA.group = nil;
-//    newVA.user = audience;
-//}
-//else if ([audience isKindOfClass:[GroupDetails class]]) {
-//    newVA.group = audience;
-//    newVA.user = nil;
-//}
-//return newVA;
 
 @end

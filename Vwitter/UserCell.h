@@ -8,12 +8,17 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+#import "UserCellViewModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserCell : UITableViewCell
+
+
 @property (strong, nonatomic) PFUser *user;
-@property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followStatusButton;
+@property (strong, nonatomic) UserCellViewModel *userCellViewModel;
 
 @end
 

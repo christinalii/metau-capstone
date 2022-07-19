@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *postVentButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *arrayOfAudienceMembers;
-@property (strong, nonatomic) NSMutableArray *arrayOfSelectedAudience;
+@property (strong, nonatomic) NSMutableSet *arrayOfSelectedAudience;
 
 @end
 
@@ -26,15 +26,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.arrayOfSelectedAudience = [[NSMutableArray alloc] init];
-    self.tableView.allowsMultipleSelection = YES;
-    [self loadData];
-
-    self.postVentButton.layer.cornerRadius = 20;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    self.arrayOfSelectedAudience = [[NSMutableSet alloc] init];
+    self.tableView.allowsMultipleSelection = YES;
+    [self loadData];
+
+    self.postVentButton.layer.cornerRadius = 20;
 }
 
 - (void)loadData {

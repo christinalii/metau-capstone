@@ -6,6 +6,7 @@
 //
 
 #import "Follow.h"
+#import "VWUser.h"
 
 @implementation Follow
 
@@ -19,10 +20,9 @@
     return @"Follow";
 }
 
-- (instancetype)initWithFollowing:(PFUser *)followingUser withApproved:(BOOL)approved {
+- (instancetype)initWithFollowing:(VWUser *)followingUser withApproved:(BOOL)approved {
     if (self = [super init]) {
-        // Initialize self
-        self.currentUser = [PFUser currentUser];
+        self.currentUser = [VWUser currentUser];
         self.currentUserId = self.currentUser.objectId;
         self.followingUser = followingUser;
         self.followingUserId = self.followingUser.objectId;

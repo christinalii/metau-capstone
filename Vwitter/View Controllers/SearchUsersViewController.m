@@ -9,14 +9,16 @@
 
 #import "SearchUsersViewController.h"
 #import "UserCell.h"
+#import "VWUser.h"
+#import "UserCellViewModel.h"
 
 @interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray *arrayOfUsers;
-@property (strong, nonatomic) NSArray *filteredData;
+@property (strong, nonatomic) NSMutableArray<VWUser *> *arrayOfUsers;
+@property (strong, nonatomic) NSArray<VWUser *> *filteredSearchResults;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-// make a property that stores the people that the user is following
+@property (strong, nonatomic) NSMutableArray<UserCellViewModel *> *arrayOfUserCellViewModels;
 
 @end
 
@@ -25,12 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadData];
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    self.arrayOfUserCellViewModels = [[NSMutableArray alloc] init];
+    [self loadData];
+    
     self.searchBar.delegate = self;
-    self.filteredData = self.arrayOfUsers;
+    self.filteredSearchResults = self.arrayOfUsers;
     
 }
 
@@ -47,7 +51,7 @@
         if (users) {
             NSLog(@"😎😎😎 Successfully loaded search users timeline");
             strongSelf.arrayOfUsers = users.mutableCopy;
-            strongSelf.filteredData = strongSelf.arrayOfUsers;
+            strongSelf.filteredSearchResults = strongSelf.arrayOfUsers;
             [strongSelf.tableView reloadData];
             
         }
@@ -55,17 +59,38 @@
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
+//    call PFCloud function with paramters limit, currentUser
+    [PFCloud callFunctionInBackground:@"fetchUserCellData"
+                       withParameters:@{@"limit":@20, @"currentUserID":[VWUser currentUser].objectId}
+                                block:^(id results, NSError *error) {
+      if (!error) {
+          NSLog(@"%@", results);
+          for (NSDictionary *object in results) {
+              VWUser *currentUser = object[@"user"];
+              UserCellViewModel *newUCVW = [[UserCellViewModel alloc] initWithUser:currentUser withUserId:currentUser.objectId withUsername:currentUser.username withIsFollowing:object[@"isFollowing"]];
+              [self.arrayOfUserCellViewModels addObject:newUCVW];
+          }
+          
+          
+          
+          [self.tableView reloadData];
+          
+      }
+      else {
+          NSLog(@"there was an error, u suck");
+      }
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.filteredData.count;
+    return self.arrayOfUserCellViewModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
-//    if this userid is in the followingSet, then do stuff inside the usercell
 
-    cell.user = self.filteredData[indexPath.row];
+//    cell.user = self.filteredSearchResults[indexPath.row];
+    cell.userCellViewModel = self.arrayOfUserCellViewModels[indexPath.row];
 
     return cell;
 }
@@ -77,13 +102,13 @@
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFUser *evaluatedObject, NSDictionary *bindings) {
             return [evaluatedObject.username containsString:searchText];
         }];
-        self.filteredData = [self.arrayOfUsers filteredArrayUsingPredicate:predicate];
+        self.filteredSearchResults = [self.arrayOfUsers filteredArrayUsingPredicate:predicate];
         
-        NSLog(@"%@", self.filteredData);
+        NSLog(@"%@", self.filteredSearchResults);
         
     }
     else {
-        self.filteredData = self.arrayOfUsers;
+        self.filteredSearchResults = self.arrayOfUsers;
     }
     
     [self.tableView reloadData];

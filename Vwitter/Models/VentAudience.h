@@ -9,14 +9,15 @@
 
 #import "Vent.h"
 #import "GroupDetails.h"
+#import "VWUser.h"
 
 @interface VentAudience : PFObject<PFSubclassing>
 
 @property (strong, nonatomic) Vent * _Nonnull vent;
-@property (strong, nonatomic) PFUser * _Nullable user;
+@property (strong, nonatomic) VWUser * _Nullable user;
 @property (strong, nonatomic) GroupDetails * _Nullable group;
 
-- (instancetype)initWithUserAudience:(PFUser *)user withVent:(Vent *)vent;
+- (instancetype)initWithUserAudience:(VWUser *)user withVent:(Vent *)vent;
 
 - (instancetype)initWithGroupAudience:(GroupDetails *)group withVent:(Vent *)vent;
 

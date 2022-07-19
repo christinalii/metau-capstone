@@ -14,6 +14,7 @@
 #import "VentCell.h"
 #import "VentAudience.h"
 #import "UIViewController+ErrorAlertPresenter.h"
+#import "VWUser.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -46,7 +47,7 @@
 - (void)loadData {
     PFQuery *vaQuery = [VentAudience query];
     [vaQuery orderByDescending:@"createdAt"];
-    [vaQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+    [vaQuery whereKey:@"user" equalTo:[VWUser currentUser]];
     [vaQuery includeKey:@"vent"];
     
     vaQuery.limit = 20;
@@ -87,9 +88,7 @@
     }];
 }
 - (IBAction)didTapLogout:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
-        
+    [VWUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if (error) {
             NSLog (@"Error logging user out");
         }

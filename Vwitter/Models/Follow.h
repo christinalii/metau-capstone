@@ -6,18 +6,19 @@
 //
 
 #import <Parse/Parse.h>
+#import "VWUser.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Follow : PFObject<PFSubclassing>
 
-@property (strong, nonatomic) PFUser *followingUser;
-@property (strong, nonatomic) PFUser *currentUser;
+@property (strong, nonatomic) VWUser *followingUser;
+@property (strong, nonatomic) VWUser *currentUser;
 @property (strong, nonatomic) NSString *followingUserId;
 @property (strong, nonatomic) NSString *currentUserId;
 @property (nonatomic, assign) BOOL approved;
 
-- (instancetype)initWithFollowing:(PFUser *)followingUser withApproved:(BOOL)approved;
+- (instancetype)initWithFollowing:(VWUser *)followingUser withApproved:(BOOL)approved;
 
 @end
 

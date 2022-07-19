@@ -6,12 +6,13 @@
 //
 
 #import <Parse/Parse.h>
+#import "VWUser.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Vent : PFObject<PFSubclassing>
 
-@property (nonatomic, strong) PFUser *author;
+@property (nonatomic, strong) VWUser *author;
 @property (nonatomic, strong) NSString *authorUserId;
 @property (nonatomic, strong) NSString *ventContent;
 
