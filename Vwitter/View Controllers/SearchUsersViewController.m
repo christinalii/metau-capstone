@@ -40,27 +40,6 @@
 }
 
 - (void)loadData {
-//    PFQuery *userQuery = [PFUser query];
-//    userQuery.limit = 20;
-//    __weak typeof(self) weakSelf = self;
-//    [userQuery findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable users, NSError * _Nullable error) {
-//        typeof(self) strongSelf = weakSelf;
-//        if (!strongSelf) {
-//            NSLog(@"I got killed!");
-//            return;
-//        }
-//        if (users) {
-//            NSLog(@"😎😎😎 Successfully loaded search users timeline");
-//            strongSelf.arrayOfUsers = users.mutableCopy;
-//            strongSelf.filteredSearchResults = strongSelf.arrayOfUsers;
-//            [strongSelf.tableView reloadData];
-//
-//        }
-//        else {
-//            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-//        }
-//    }];
-//    call PFCloud function with paramters limit, currentUser
     __weak typeof(self) weakSelf = self;
     [PFCloud callFunctionInBackground:@"fetchUserCellData"
                        withParameters:@{@"limit":@20, @"currentUserID":[VWUser currentUser].objectId, @"searchString":@""}
@@ -93,8 +72,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
-
-//    cell.user = self.filteredSearchResults[indexPath.row];
     cell.userCellViewModel = self.arrayOfUserCellViewModels[indexPath.row];
 
     return cell;
@@ -132,23 +109,7 @@
           NSLog(@"there was an error, u suck");
       }
     }];
-    
-//    if (searchText.length != 0) {
-//
-//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(PFUser *evaluatedObject, NSDictionary *bindings) {
-//            return [evaluatedObject.username containsString:searchText];
-//        }];
-//        self.filteredSearchResults = [self.arrayOfUsers filteredArrayUsingPredicate:predicate];
-//
-//        NSLog(@"%@", self.filteredSearchResults);
-//
-//    }
-//    else {
-//        self.filteredSearchResults = self.arrayOfUsers;
-//    }
-//
-//    [self.tableView reloadData];
- 
+
 }
 
 @end
