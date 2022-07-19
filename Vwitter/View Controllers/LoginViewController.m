@@ -9,6 +9,7 @@
 
 #import "LoginViewController.h"
 #import "VWUser.h"
+#import "UIViewController+ErrorAlertPresenter.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -38,6 +39,7 @@
         }
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
+            [strongSelf presentErrorMessageWithTitle:@"Error" message:error.localizedDescription];
         } else {
             NSLog(@"User logged in successfully");
             [strongSelf performSegueWithIdentifier:@"loginSegue" sender:nil];

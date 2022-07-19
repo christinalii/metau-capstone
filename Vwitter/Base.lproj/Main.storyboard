@@ -120,7 +120,7 @@
                                     <constraint firstAttribute="height" constant="34" id="gWP-mF-FEi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C30-hw-R12">
                                 <rect key="frame" x="42" y="323" width="75" height="31"/>
@@ -662,7 +662,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S1h-yJ-Z1M"/>
+        <segue reference="aPI-kv-ERw"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="air-pngrepo-com" width="60" height="60"/>
