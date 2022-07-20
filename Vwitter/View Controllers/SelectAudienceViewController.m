@@ -13,12 +13,13 @@
 #import "AudienceMemberCell.h"
 #import "Vent.h"
 #import "VentAudience.h"
+#import "VWHelpers.h"
 
 @interface SelectAudienceViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postVentButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *arrayOfUserAudienceMembers;
-@property (strong, nonatomic) NSMutableArray *arrayOfGroupAudienceMembers;
+@property (strong, nonatomic) NSMutableArray<VWUser *> *arrayOfUserAudienceMembers;
+@property (strong, nonatomic) NSMutableArray<GroupDetails *> *arrayOfGroupAudienceMembers;
 @property (strong, nonatomic) NSMutableSet *arrayOfSelectedAudience;
 
 @end
@@ -50,7 +51,7 @@
         }
         if (!error) {
           NSLog(@"%@", follows);
-          NSArray *arrayOfFollowers = [follows valueForKey:@"currentUser"];
+          NSArray *arrayOfFollowers = CAST_TO_CLASS_OR_NIL([follows valueForKey:@"currentUser"], NSArray);
           strongSelf.arrayOfUserAudienceMembers = arrayOfFollowers.mutableCopy;
           [strongSelf.tableView reloadData];
           
@@ -59,19 +60,77 @@
           NSLog(@"there was an error, u suck");
         }
     }];
+    
+    [PFCloud callFunctionInBackground:@"fetchPotentialAudienceGroups"
+                       withParameters:@{@"limit":@20, @"groupAuthorUserId":[VWUser currentUser].objectId}
+                                block:^(id groups, NSError *error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            NSLog(@"I got killed!");
+            return;
+        }
+        if (!error) {
+          NSLog(@"%@", groups);
+          NSArray *arrayOfGroups = groups;
+          strongSelf.arrayOfGroupAudienceMembers = arrayOfGroups.mutableCopy;
+          [strongSelf.tableView reloadData];
+//            figure out where to move reloadData
+          
+        }
+        else {
+          NSLog(@"there was an error, u suck");
+        }
+    }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.arrayOfUserAudienceMembers.count;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+     return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+     if (section == 0)
+     {
+            return [self.arrayOfGroupAudienceMembers count];
+     }
+     else {
+            return [self.arrayOfUserAudienceMembers count];
+     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+          return @"Groups";
+    }
+    else {
+          return @"Users";
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AudienceMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AudienceMemberCell" forIndexPath:indexPath];
 
-    cell.user = self.arrayOfUserAudienceMembers[indexPath.row];
+    
+    if (indexPath.section == 0) {
+//        cell.user = self.arrayOfGroupAudienceMembers[indexPath.row];
+    }
+    else {
+        cell.user = self.arrayOfUserAudienceMembers[indexPath.row];
+    }
 
     return cell;
 }
+
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return self.arrayOfUserAudienceMembers.count;
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    AudienceMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AudienceMemberCell" forIndexPath:indexPath];
+//
+//    cell.user = self.arrayOfUserAudienceMembers[indexPath.row];
+//
+//    return cell;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

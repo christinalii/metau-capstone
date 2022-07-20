@@ -11,8 +11,9 @@
 #import "UserCell.h"
 #import "VWUser.h"
 #import "UserCellViewModel.h"
+#import "Follow.h"
 
-@interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UserCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray<VWUser *> *arrayOfUsers;
@@ -27,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -64,6 +65,7 @@
           NSLog(@"there was an error, u suck");
       }
     }];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -73,6 +75,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
     cell.userCellViewModel = self.arrayOfUserCellViewModels[indexPath.row];
+    cell.delegate = self;
 
     return cell;
 }
@@ -110,6 +113,41 @@
       }
     }];
 
+}
+
+- (void)didFollowUserWithViewModel:(UserCellViewModel *)viewModel {
+    
+    //refactor all of this into cloud
+    PFQuery *thisFollow = [Follow query];
+    [thisFollow whereKey:@"followingUserId" equalTo:viewModel.user.objectId];
+    [thisFollow whereKey:@"currentUserId" equalTo:[PFUser currentUser].objectId];
+    
+    __weak typeof(self) weakSelf = self;
+    [thisFollow findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            NSLog(@"I got killed!");
+            return;
+        }
+        
+        if ([objects count] != 0) {
+            // refactor this to be deleteAll
+            for (id object in objects) {
+                [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    viewModel.isFollowing = !succeeded;
+                    [self.tableView reloadData];
+                }];
+            }
+            
+        }
+        else {
+            Follow *newFollow =  [[Follow alloc] initWithFollowing:viewModel.user withApproved:YES];
+            [newFollow saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                viewModel.isFollowing = succeeded;
+                [self.tableView reloadData];
+            }];
+        }
+    }];
 }
 
 @end
