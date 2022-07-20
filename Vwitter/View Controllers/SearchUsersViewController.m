@@ -12,6 +12,7 @@
 #import "VWUser.h"
 #import "UserCellViewModel.h"
 #import "Follow.h"
+#import "VWHelpers.h"
 
 @interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UserCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -52,9 +53,27 @@
         }
         if (!error) {
           NSLog(@"%@", results);
-          for (NSDictionary *object in results) {
-              VWUser *currentUser = object[@"user"];
-              UserCellViewModel *newUCVW = [[UserCellViewModel alloc] initWithUser:currentUser withUserId:currentUser.objectId withUsername:currentUser.username withIsFollowing:object[@"isFollowing"]];
+          NSArray *_Nullable resultsArray = CAST_TO_CLASS_OR_NIL(results, NSArray);
+            if (!resultsArray) {
+                return;
+            }
+          for (id object in resultsArray) {
+              NSDictionary *_Nullable dictionary = CAST_TO_CLASS_OR_NIL(object, NSDictionary);
+              if (!dictionary) {
+                NSLog(@"not a dictionary");
+                continue;
+              }
+              VWUser *_Nullable currentUser = CAST_TO_CLASS_OR_NIL(object[@"user"], VWUser);
+              if (!currentUser) {
+                  NSLog(@"not a user");
+                  continue;
+              }
+              NSNumber *_Nullable isFollowing = CAST_TO_CLASS_OR_NIL(object[@"isFollowing"], NSNumber);
+              if (!isFollowing) {
+                  NSLog(@"not a number");
+                  continue;
+              }
+              UserCellViewModel *newUCVW = [[UserCellViewModel alloc] initWithUser:currentUser withUserId:currentUser.objectId withUsername:currentUser.username withIsFollowing:isFollowing.boolValue];
               [strongSelf.arrayOfUserCellViewModels addObject:newUCVW];
           }
         
@@ -98,12 +117,30 @@
         }
         if (!error) {
           NSLog(@"%@", results);
+            NSArray *_Nullable resultsArray = CAST_TO_CLASS_OR_NIL(results, NSArray);
+            if (!resultsArray) {
+                return;
+            }
             [strongSelf.arrayOfUserCellViewModels removeAllObjects];
-          for (NSDictionary *object in results) {
-              VWUser *currentUser = object[@"user"];
-              UserCellViewModel *newUCVW = [[UserCellViewModel alloc] initWithUser:currentUser withUserId:currentUser.objectId withUsername:currentUser.username withIsFollowing:object[@"isFollowing"]];
-              [strongSelf.arrayOfUserCellViewModels addObject:newUCVW];
-          }
+            for (id object in resultsArray) {
+                NSDictionary *_Nullable dictionary = CAST_TO_CLASS_OR_NIL(object, NSDictionary);
+                if (!dictionary) {
+                  NSLog(@"not a dictionary");
+                  continue;
+                }
+                VWUser *_Nullable currentUser = CAST_TO_CLASS_OR_NIL(object[@"user"], VWUser);
+                if (!currentUser) {
+                    NSLog(@"not a user");
+                    continue;
+                }
+                NSNumber *_Nullable isFollowing = CAST_TO_CLASS_OR_NIL(object[@"isFollowing"], NSNumber);
+                if (!isFollowing) {
+                    NSLog(@"not a number");
+                    continue;
+                }
+                UserCellViewModel *newUCVW = [[UserCellViewModel alloc] initWithUser:currentUser withUserId:currentUser.objectId withUsername:currentUser.username withIsFollowing:isFollowing.boolValue];
+                [strongSelf.arrayOfUserCellViewModels addObject:newUCVW];
+            }
         
           [strongSelf.tableView reloadData];
           

@@ -24,6 +24,12 @@
     [self refreshData];
 }
 
+- (void)setGroup:(GroupDetails *)group{
+    _group = group;
+
+    [self refreshData];
+}
+
 - (void)refreshData {
     
     NSString *at = @"@";

@@ -8,12 +8,16 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+#import "VWUser.h"
+#import "GroupDetails.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AudienceMemberCell : UITableViewCell
 
-@property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) VWUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *username;
+@property (strong, nonatomic) GroupDetails *group;
 
 @end
 
