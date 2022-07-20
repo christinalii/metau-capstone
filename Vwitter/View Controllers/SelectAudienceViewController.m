@@ -14,6 +14,7 @@
 #import "Vent.h"
 #import "VentAudience.h"
 #import "VWHelpers.h"
+#import "GroupCell.h"
 
 @interface SelectAudienceViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postVentButton;
@@ -74,7 +75,6 @@
           NSArray *arrayOfGroups = groups;
           strongSelf.arrayOfGroupAudienceMembers = arrayOfGroups.mutableCopy;
           [strongSelf.tableView reloadData];
-//            figure out where to move reloadData
           
         }
         else {
@@ -107,17 +107,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AudienceMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AudienceMemberCell" forIndexPath:indexPath];
-
     
     if (indexPath.section == 0) {
-//        cell.user = self.arrayOfGroupAudienceMembers[indexPath.row];
+        GroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
+        cell.group = self.arrayOfGroupAudienceMembers[indexPath.row];
+        return cell;
     }
     else {
+        AudienceMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AudienceMemberCell" forIndexPath:indexPath];
         cell.user = self.arrayOfUserAudienceMembers[indexPath.row];
+        return cell;
     }
 
-    return cell;
+    
 }
 
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -137,7 +139,13 @@
     UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
     tableViewCell.accessoryView.hidden = NO;
     tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [self.arrayOfSelectedAudience addObject:self.arrayOfUserAudienceMembers[indexPath.row]];
+    if (indexPath.section == 0) {
+        [self.arrayOfSelectedAudience addObject:self.arrayOfGroupAudienceMembers[indexPath.row]];
+    }
+    else {
+        [self.arrayOfSelectedAudience addObject:self.arrayOfUserAudienceMembers[indexPath.row]];
+    }
+    
     
 }
 
@@ -146,8 +154,12 @@
     UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
     tableViewCell.accessoryView.hidden = YES;
     tableViewCell.accessoryType = UITableViewCellAccessoryNone;
-    
-    [self.arrayOfSelectedAudience removeObject:self.arrayOfUserAudienceMembers[indexPath.row]];
+    if (indexPath.section == 0) {
+        [self.arrayOfSelectedAudience removeObject:self.arrayOfGroupAudienceMembers[indexPath.row]];
+    }
+    else {
+        [self.arrayOfSelectedAudience removeObject:self.arrayOfUserAudienceMembers[indexPath.row]];
+    }
 
 }
 

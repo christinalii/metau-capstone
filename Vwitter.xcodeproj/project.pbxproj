@@ -36,6 +36,7 @@
 		298B8328287E1D8700EE54B8 /* GroupMembership.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B8327287E1D8700EE54B8 /* GroupMembership.m */; };
 		298B832B28808A8E00EE54B8 /* VentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 298B832A28808A8E00EE54B8 /* VentCell.m */; };
 		29AA84AF28887AE500C9FC1F /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AA84AE28887AE500C9FC1F /* CreateGroupViewController.m */; };
+		29AA84B22888BC2D00C9FC1F /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29AA84B12888BC2D00C9FC1F /* GroupCell.m */; };
 		29B8E0A8288626E100EEFFC2 /* UserCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B8E0A7288626E100EEFFC2 /* UserCellViewModel.m */; };
 		BDA7F819A0286F3B39A008CB /* Pods_VwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAF62101235E35D90DEFAAC /* Pods_VwitterTests.framework */; };
 		DA1CE8C75883D35ED75901CF /* Pods_Vwitter_VwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */; };
@@ -113,6 +114,8 @@
 		298B832C2880D52D00EE54B8 /* VWHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VWHelpers.h; sourceTree = "<group>"; };
 		29AA84AD28887AE500C9FC1F /* CreateGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
 		29AA84AE28887AE500C9FC1F /* CreateGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
+		29AA84B02888BC2D00C9FC1F /* GroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
+		29AA84B12888BC2D00C9FC1F /* GroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
 		29B8E0A6288626E100EEFFC2 /* UserCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCellViewModel.h; sourceTree = "<group>"; };
 		29B8E0A7288626E100EEFFC2 /* UserCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCellViewModel.m; sourceTree = "<group>"; };
 		331D1081242141322F3BA4A9 /* Pods_Vwitter_VwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vwitter_VwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +202,8 @@
 				298B832928808A8E00EE54B8 /* VentCell.h */,
 				298B832A28808A8E00EE54B8 /* VentCell.m */,
 				298B832C2880D52D00EE54B8 /* VWHelpers.h */,
+				29AA84B02888BC2D00C9FC1F /* GroupCell.h */,
+				29AA84B12888BC2D00C9FC1F /* GroupCell.m */,
 			);
 			path = Vwitter;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				298B831F287E1BFA00EE54B8 /* Vent.m in Sources */,
 				298B8322287E1C6000EE54B8 /* VentAudience.m in Sources */,
 				298B830A287CD3E000EE54B8 /* UserCell.m in Sources */,
+				29AA84B22888BC2D00C9FC1F /* GroupCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
