@@ -38,28 +38,24 @@
 }
 
 - (void)loadData {
-    PFQuery *audienceQuery = [Follow query];
-    [audienceQuery whereKey:@"followingUser" equalTo:[PFUser currentUser]];
-    [audienceQuery whereKey:@"approved" equalTo:@YES];
-    [audienceQuery includeKey:@"currentUser"];
-    audienceQuery.limit = 20;
-    
     __weak typeof(self) weakSelf = self;
-    [audienceQuery findObjectsInBackgroundWithBlock:^(NSArray<Follow *> * _Nullable follows, NSError * _Nullable error) {
+    [PFCloud callFunctionInBackground:@"fetchPotentialAudienceUsers"
+                       withParameters:@{@"limit":@20, @"currentUserId":[VWUser currentUser].objectId}
+                                block:^(id follows, NSError *error) {
         typeof(self) strongSelf = weakSelf;
         if (!strongSelf) {
-                NSLog(@"I got killed!");
-                return;
+            NSLog(@"I got killed!");
+            return;
         }
-        if (follows) {
-            NSLog(@"😎😎😎 Successfully loaded search users timeline");
-            NSArray *arrayOfFollowers = [follows valueForKey:@"currentUser"];
-            strongSelf.arrayOfAudienceMembers = arrayOfFollowers.mutableCopy;
-            [strongSelf.tableView reloadData];
-            
+        if (!error) {
+          NSLog(@"%@", follows);
+          NSArray *arrayOfFollowers = [follows valueForKey:@"currentUser"];
+          strongSelf.arrayOfAudienceMembers = arrayOfFollowers.mutableCopy;
+          [strongSelf.tableView reloadData];
+          
         }
         else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+          NSLog(@"there was an error, u suck");
         }
     }];
 }
