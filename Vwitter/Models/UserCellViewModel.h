@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) VWUser *user;
 @property (strong, nonatomic) NSString *username;
-@property (nonatomic, assign) BOOL *isFollowing;
+@property (nonatomic, assign) BOOL isFollowing;
 @property (strong, nonatomic) NSString *userId;
 
 - (instancetype)initWithUser:(VWUser *)user withUserId:(NSString *)userId withUsername:(NSString *)username withIsFollowing:(BOOL)isFollowing;

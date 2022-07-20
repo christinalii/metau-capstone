@@ -14,7 +14,7 @@
     newUCVW.user = user;
     newUCVW.userId = userId;
     newUCVW.username = username;
-    newUCVW.isFollowing = &(isFollowing);
+    newUCVW.isFollowing = isFollowing;
     return newUCVW;
 }
 

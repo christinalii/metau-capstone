@@ -17,7 +17,8 @@
 @interface SelectAudienceViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postVentButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *arrayOfAudienceMembers;
+@property (strong, nonatomic) NSMutableArray *arrayOfUserAudienceMembers;
+@property (strong, nonatomic) NSMutableArray *arrayOfGroupAudienceMembers;
 @property (strong, nonatomic) NSMutableSet *arrayOfSelectedAudience;
 
 @end
@@ -50,7 +51,7 @@
         if (!error) {
           NSLog(@"%@", follows);
           NSArray *arrayOfFollowers = [follows valueForKey:@"currentUser"];
-          strongSelf.arrayOfAudienceMembers = arrayOfFollowers.mutableCopy;
+          strongSelf.arrayOfUserAudienceMembers = arrayOfFollowers.mutableCopy;
           [strongSelf.tableView reloadData];
           
         }
@@ -61,13 +62,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.arrayOfAudienceMembers.count;
+    return self.arrayOfUserAudienceMembers.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AudienceMemberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AudienceMemberCell" forIndexPath:indexPath];
 
-    cell.user = self.arrayOfAudienceMembers[indexPath.row];
+    cell.user = self.arrayOfUserAudienceMembers[indexPath.row];
 
     return cell;
 }
@@ -77,7 +78,7 @@
     UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
     tableViewCell.accessoryView.hidden = NO;
     tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [self.arrayOfSelectedAudience addObject:self.arrayOfAudienceMembers[indexPath.row]];
+    [self.arrayOfSelectedAudience addObject:self.arrayOfUserAudienceMembers[indexPath.row]];
     
 }
 
@@ -87,10 +88,11 @@
     tableViewCell.accessoryView.hidden = YES;
     tableViewCell.accessoryType = UITableViewCellAccessoryNone;
     
-    [self.arrayOfSelectedAudience removeObject:self.arrayOfAudienceMembers[indexPath.row]];
+    [self.arrayOfSelectedAudience removeObject:self.arrayOfUserAudienceMembers[indexPath.row]];
 
 }
 
+//refactor to be PFCloud func
 - (IBAction)didTapVent:(id)sender {
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -126,8 +128,8 @@
             [PFObject saveAllInBackground:ventAudiences block:^(BOOL succeeded, NSError * _Nullable error) {
                 if (succeeded) {
                     NSLog(@"vent audiences succeeded!");
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    [strongSelf dismissViewControllerAnimated:true completion:nil];
+                    [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+                    [strongSelf dismissViewControllerAnimated:YES completion:nil];
                 }
                 else {
                     NSLog(@"vent audiences failed!");

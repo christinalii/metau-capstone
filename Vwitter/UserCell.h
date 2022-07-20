@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserCell : UITableViewCell
 
-
 @property (strong, nonatomic) PFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followStatusButton;
