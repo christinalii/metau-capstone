@@ -6,6 +6,8 @@
 //
 
 #import "GroupMembership.h"
+#import "GroupDetails.h"
+#import "VWUser.h"
 
 @implementation GroupMembership
 
@@ -14,6 +16,14 @@
 
 + (nonnull NSString *)parseClassName {
     return @"GroupMembership";
+}
+
+- (instancetype)initWithUser:(VWUser *)user withGroup:(GroupDetails *)group {
+    if (self = [super init]) {
+        self.user = user;
+        self.group = group;
+    }
+    return self;
 }
 
 @end

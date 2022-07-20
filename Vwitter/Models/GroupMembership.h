@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) GroupDetails *group;
 @property (strong, nonatomic) VWUser *user;
 
+- (instancetype)initWithUser:(VWUser *)user withGroup:(GroupDetails *)group;
+
 @end
 
 NS_ASSUME_NONNULL_END

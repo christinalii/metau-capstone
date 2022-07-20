@@ -15,4 +15,11 @@
     return @"GroupDetails";
 }
 
+- (instancetype)initWithGroupName:(NSString *)groupName {
+    if (self = [super init]) {
+        self.groupName = groupName;
+    }
+    return self;
+}
+
 @end

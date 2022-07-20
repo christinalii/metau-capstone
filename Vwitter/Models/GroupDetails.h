@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *groupName;
 
+- (instancetype)initWithGroupName:(NSString *)groupName;
+
 @end
 
 NS_ASSUME_NONNULL_END
