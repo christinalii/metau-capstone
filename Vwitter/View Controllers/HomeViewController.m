@@ -15,6 +15,7 @@
 #import "VentAudience.h"
 #import "UIViewController+ErrorAlertPresenter.h"
 #import "VWUser.h"
+#import "VWHelpers.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -45,46 +46,40 @@
 }
 
 - (void)loadData {
-    PFQuery *vaQuery = [VentAudience query];
-    [vaQuery orderByDescending:@"createdAt"];
-    [vaQuery whereKey:@"user" equalTo:[VWUser currentUser]];
-    [vaQuery includeKey:@"vent"];
-    
-    vaQuery.limit = 20;
-    
-
     __weak typeof(self) weakSelf = self;
-    [vaQuery findObjectsInBackgroundWithBlock:^(NSArray<VentAudience *> * _Nullable ventAudiences, NSError * _Nullable error) {
+    [PFCloud callFunctionInBackground:@"fetchHomeTimeline"
+                       withParameters:@{@"limit":@20, @"currentUserId":[VWUser currentUser].objectId}
+                                block:^(id vents, NSError *error) {
         typeof(self) strongSelf = weakSelf;
         if (!strongSelf) {
             NSLog(@"I got killed!");
             return;
         }
-        if (ventAudiences) {
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-            // do something with the tdata fetched
-            strongSelf.arrayOfVents = [ventAudiences valueForKey:@"vent"];
-            
+        if (!error) {
+            NSLog(@"%@", vents);
+            NSArray *arrayOfVents = CAST_TO_CLASS_OR_NIL(vents, NSArray);
+            if (!arrayOfVents) {
+                NSLog(@"Not an array");
+                return;
+            }
+            strongSelf.arrayOfVents = arrayOfVents.mutableCopy;
             [strongSelf.tableView reloadData];
-            
+
             if (strongSelf.isRefreshing) {
                 [strongSelf.refreshControl endRefreshing];
                 strongSelf.isRefreshing = NO;
             }
-            
+          
         }
         else {
-            // handle error
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-            
+            NSLog(@"there was an error, u suck");
             if (strongSelf.isRefreshing) {
                 [strongSelf.refreshControl endRefreshing];
                 strongSelf.isRefreshing = NO;
                 [strongSelf presentErrorMessageWithTitle:@"Error" message:@"There was an error refreshing."];
-                
+
             }
         }
-
     }];
 }
 - (IBAction)didTapLogout:(id)sender {

@@ -18,7 +18,7 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)setUser:(PFUser *)user{
+- (void)setUser:(VWUser *)user{
     _user = user;
 
     [self refreshData];
