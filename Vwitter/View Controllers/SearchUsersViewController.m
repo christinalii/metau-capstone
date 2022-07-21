@@ -44,7 +44,7 @@
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [PFCloud callFunctionInBackground:@"fetchUserCellData"
-                       withParameters:@{@"limit":@20, @"currentUserID":[VWUser currentUser].objectId, @"searchString":@""}
+                       withParameters:@{@"limit":@20, @"currentUserId":[VWUser currentUser].objectId, @"searchString":@""}
                                 block:^(id results, NSError *error) {
         typeof(self) strongSelf = weakSelf;
         if (!strongSelf) {
