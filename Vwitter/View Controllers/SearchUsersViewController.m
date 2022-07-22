@@ -13,12 +13,14 @@
 #import "UserCellViewModel.h"
 #import "Follow.h"
 #import "VWHelpers.h"
+#import "GroupDetails.h"
+#import "GroupCell.h"
 
 @interface SearchUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UserCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) NSMutableArray<UserCellViewModel *> *arrayOfUserCellViewModels;
+@property (strong, nonatomic) NSMutableArray *arrayOfUserCellViewModelsAndGroups;
 @property (nonatomic, readwrite) int requestCount;
 
 @end
@@ -31,11 +33,15 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.arrayOfUserCellViewModels = [[NSMutableArray alloc] init];
+    self.arrayOfUserCellViewModelsAndGroups = [[NSMutableArray alloc] init];
     [self loadSearchResults:nil];
     
     self.searchBar.delegate = self;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self loadSearchResults:nil];
 }
 
 - (void)loadSearchResults:(NSString *_Nullable)searchString {
@@ -45,7 +51,7 @@
     if (searchString && ![searchString isEqualToString:@""]) {
         params[@"searchString"] = searchString;
     }
-    [PFCloud callFunctionInBackground:@"fetchUserCellData"
+    [PFCloud callFunctionInBackground:@"fetchUsersAndGroups"
                        withParameters:params
                                 block:^(id results, NSError *error) {
         typeof(self) strongSelf = weakSelf;
@@ -63,8 +69,12 @@
             if (!resultsArray) {
                 return;
             }
-            [strongSelf.arrayOfUserCellViewModels removeAllObjects];
+            [strongSelf.arrayOfUserCellViewModelsAndGroups removeAllObjects];
             for (id object in resultsArray) {
+                if ([object isKindOfClass:[GroupDetails class]]) {
+                    [strongSelf.arrayOfUserCellViewModelsAndGroups addObject:object];
+                    continue;
+                }
                 NSDictionary *_Nullable dictionary = CAST_TO_CLASS_OR_NIL(object, NSDictionary);
                 if (!dictionary) {
                     NSLog(@"not a dictionary");
@@ -81,7 +91,7 @@
                     continue;
                 }
                 UserCellViewModel *newUCVW = [[UserCellViewModel alloc] initWithUser:currentUser withUserId:currentUser.objectId withUsername:currentUser.username withIsFollowing:isFollowing.boolValue];
-                [strongSelf.arrayOfUserCellViewModels addObject:newUCVW];
+                [strongSelf.arrayOfUserCellViewModelsAndGroups addObject:newUCVW];
             }
             
             [strongSelf.tableView reloadData];
@@ -95,15 +105,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.arrayOfUserCellViewModels.count;
+    return self.arrayOfUserCellViewModelsAndGroups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
-    cell.userCellViewModel = self.arrayOfUserCellViewModels[indexPath.row];
-    cell.delegate = self;
-    
-    return cell;
+    if ([self.arrayOfUserCellViewModelsAndGroups[indexPath.row] isKindOfClass:[GroupDetails class]]) {
+        GroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
+        cell.group = self.arrayOfUserCellViewModelsAndGroups[indexPath.row];
+        return cell;
+    }
+    else {
+        UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
+        cell.userCellViewModel = self.arrayOfUserCellViewModelsAndGroups[indexPath.row];
+        cell.delegate = self;
+        
+        return cell;
+    }
+
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {

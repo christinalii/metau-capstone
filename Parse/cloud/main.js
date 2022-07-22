@@ -15,6 +15,24 @@ Parse.Cloud.beforeSave(Parse.User, async (request) => {
   );
 });
 
+Parse.Cloud.afterSave(Parse.User, async (request) => {
+  const SearchItem = Parse.Object.extend("SearchItem");
+  const searchItem = new SearchItem();
+  var currentUser = request.object;
+  var username = await request.object.get("username");
+
+  searchItem.save({
+    searchName: username.toLowerCase(),
+    user: currentUser
+  })
+  .then((searchItem) => {
+    // The object was saved successfully.
+  }, (error) => {
+    // The save failed.
+    // error is a Parse.Error with an error code and message.
+  });
+});
+
 Parse.Cloud.beforeSave("VentAudience", async (request) => {
   var vent = await request.object.get("vent");
   var user = await request.object.get("user");
@@ -38,6 +56,56 @@ Parse.Cloud.beforeSave("VentAudience", async (request) => {
     );
   }
 
+
+});
+
+Parse.Cloud.beforeSave("GroupDetails", async (request) => {
+  var currentGroup = request.object;
+  var groupName = await request.object.get("groupName");
+
+  request.object.set(
+    "searchName",
+    groupName.toLowerCase()
+  );
+
+});
+
+Parse.Cloud.afterSave("GroupDetails", async (request) => {
+  const SearchItem = Parse.Object.extend("SearchItem");
+  const searchItem = new SearchItem();
+  var currentGroup = request.object;
+  var groupName = await request.object.get("groupName");
+
+  searchItem.save({
+    searchName: groupName.toLowerCase(),
+    group: currentGroup
+  })
+  .then((searchItem) => {
+    // The object was saved successfully.
+  }, (error) => {
+    // The save failed.
+    // error is a Parse.Error with an error code and message.
+  });
+
+});
+
+Parse.Cloud.beforeSave("SearchItem", async (request) => {
+  var group = await request.object.get("group");
+  var user = await request.object.get("user");
+
+  if (group !== undefined) {
+    request.object.set(
+      "groupId",
+      group.id
+    );
+  }
+
+  if (user !== undefined) {
+    request.object.set(
+      "userId",
+      user.id
+    );
+  }
 
 });
 
@@ -97,6 +165,44 @@ Parse.Cloud.define("fetchUserCellData", async (request) => {
     }
 
   }
+  return results;
+});
+
+Parse.Cloud.define("fetchUsersAndGroups", async (request) => {
+  console.log("Hello World");
+  var limit = request.params.limit;
+  var currentUserId = request.params.currentUserId;
+  let modelResults = [];
+
+  var userQuery = new Parse.Query("User");
+  var groupQuery = new Parse.Query("GroupDetails");
+  groupQuery.equalTo("groupAuthorUserId", currentUserId);
+  if (request.params.searchString !== undefined) {
+    userQuery.contains("searchName", request.params.searchString.toLowerCase());
+    groupQuery.contains("searchName", request.params.searchString.toLowerCase());
+  }
+  const userResult = await userQuery.find();
+  for (let i = 0; i < userResult.length; i++) {
+    var user = userResult[i];
+    var followQuery = new Parse.Query("Follow");
+    followQuery.equalTo("followingUserId", user.id);
+    followQuery.equalTo("currentUserId", currentUserId);
+    const followResult = await followQuery.find();
+    if (followResult.length > 0) {
+      var modelDict = {"isFollowing": true,
+                    "user": user};
+      modelResults.push(modelDict);
+    }
+    else {
+      var modelDict = {"isFollowing": false,
+                    "user": user};
+      modelResults.push(modelDict);
+    }
+
+  }
+  const groupResult = await groupQuery.find();
+
+  var results = groupResult.concat(modelResults);
   return results;
 });
 
