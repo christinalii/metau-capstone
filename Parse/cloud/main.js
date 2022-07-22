@@ -172,37 +172,42 @@ Parse.Cloud.define("fetchUsersAndGroups", async (request) => {
   console.log("Hello World");
   var limit = request.params.limit;
   var currentUserId = request.params.currentUserId;
-  let modelResults = [];
+  let results = [];
 
-  var userQuery = new Parse.Query("User");
-  var groupQuery = new Parse.Query("GroupDetails");
-  groupQuery.equalTo("groupAuthorUserId", currentUserId);
+  var searchItemQuery = new Parse.Query("SearchItem");
   if (request.params.searchString !== undefined) {
-    userQuery.contains("searchName", request.params.searchString.toLowerCase());
-    groupQuery.contains("searchName", request.params.searchString.toLowerCase());
+    searchItemQuery.contains("searchName", request.params.searchString.toLowerCase());
   }
-  const userResult = await userQuery.find();
-  for (let i = 0; i < userResult.length; i++) {
-    var user = userResult[i];
-    var followQuery = new Parse.Query("Follow");
-    followQuery.equalTo("followingUserId", user.id);
-    followQuery.equalTo("currentUserId", currentUserId);
-    const followResult = await followQuery.find();
-    if (followResult.length > 0) {
-      var modelDict = {"isFollowing": true,
-                    "user": user};
-      modelResults.push(modelDict);
+  searchItemQuery.include("group");
+  searchItemQuery.include("user");
+  const searchItemResult = await searchItemQuery.find();
+  for (let i = 0; i < searchItemResult.length; i++) {
+    var item = searchItemResult[i];
+    var group = await item.get("group");
+    var user = await item.get("user");
+    if (group !== undefined) {
+      results.push(group);
+      continue;
     }
-    else {
-      var modelDict = {"isFollowing": false,
-                    "user": user};
-      modelResults.push(modelDict);
+    if (user !== undefined) {
+      var followQuery = new Parse.Query("Follow");
+      followQuery.equalTo("followingUserId", user.id);
+      followQuery.equalTo("currentUserId", currentUserId);
+      const followResult = await followQuery.find();
+      if (followResult.length > 0) {
+        var modelDict = {"isFollowing": true,
+                      "user": user};
+        results.push(modelDict);
+      }
+      else {
+        var modelDict = {"isFollowing": false,
+                      "user": user};
+        results.push(modelDict);
+      }
     }
 
   }
-  const groupResult = await groupQuery.find();
 
-  var results = groupResult.concat(modelResults);
   return results;
 });
 
