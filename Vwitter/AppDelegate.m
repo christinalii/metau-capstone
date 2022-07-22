@@ -5,8 +5,9 @@
 //  Created by Christina Li on 7/6/22.
 //
 
-#import "AppDelegate.h"
 #import <Parse/Parse.h>
+
+#import "AppDelegate.h"
 
 @interface AppDelegate ()
 
@@ -18,9 +19,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
 
-        configuration.applicationId = @"kniju7zULq2flcCwJ7PEG3U8bgQlxqFMBn2NEKPH";
-        configuration.clientKey = @"eNwf1DpXZv3vEisobEV1yVb4NyR0jSvFkpLnJ34v";
-        configuration.server = @"https://parseapi.back4app.com";
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
+
+        configuration.applicationId = [dict objectForKey: @"applicationId"];
+        configuration.clientKey = [dict objectForKey: @"clientKey"];
+        configuration.server = @"http://localhost:1337/parse";
+//        configuration.server = @"https://parseapi.back4app.com";
     }];
 
     [Parse initializeWithConfiguration:config];
